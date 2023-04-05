@@ -68,7 +68,7 @@ https://www.figma.com/file/9H2lNOJDPoH7ixRGwKXhej/PDS-TP
   - Criar tela para exibir o resultado do score financeiro
 
 
-**5. Como admin, eu gostaria de visualizar relatórios de erro do projeto.(Higor) **
+**5. Como admin, eu gostaria de visualizar relatórios de erro do projeto.(Higor)**
   - Configurar o Crashlytics (firebase) para o frontend do projeto.
 
 
