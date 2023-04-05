@@ -72,5 +72,5 @@ https://www.figma.com/file/9H2lNOJDPoH7ixRGwKXhej/PDS-TP
   - Configurar o Crashlytics (firebase) para o frontend do projeto.
 
 
-**6. Como admin, eu gostaria de visualizar relatórios de erro do projeto. (Victor)**
+**6. Como admin, eu gostaria de saber quantos usuários realizaram o cálculo do seu score financeiro. (Victor)**
   - Configurar o Analytics (firebase) para o frontend do projeto.
