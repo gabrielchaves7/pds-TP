@@ -45,7 +45,7 @@ https://www.figma.com/file/9H2lNOJDPoH7ixRGwKXhej/PDS-TP
 
 
 ## Backlog da Sprint 1
-**1. Como usuário, eu gostaria de me cadastrar no sistema.**
+**1. Como usuário, eu gostaria de me cadastrar no sistema. (Gabriel Chaves)**
   - Configurar bando de dados e criar primeiras tabelas.
   - Configurar o swagger no backend.
   - Criar imagem do docker para rodar o backend projeto.
@@ -53,24 +53,24 @@ https://www.figma.com/file/9H2lNOJDPoH7ixRGwKXhej/PDS-TP
   - Criar tela de SignIn/SignUp.
 
 
-**2. Como usuário, eu gostaria de realizar login pelo Google.**
+**2. Como usuário, eu gostaria de realizar login pelo Google. (Philippe)**
   - Configurar o firebase para o projeto.
   - Configurar a autenticação pelo Google utilizando o firebase.
   - Adaptar tela de SignIn/SignUp.
 
 
-**3. Como usuário, eu gostaria de calcular o meu score financeiro.**
+**3. Como usuário, eu gostaria de calcular o meu score financeiro. (Victor)**
   - Criar e testar a rota para calcular o score financeiro, utilizando NestJS.
   - Criar formulário para preencher os dados financeiros conforme protótipo do figma.
 
 
-**4. Como usuário, eu gostaria de visualizar o resultado do meu score financeiro.**
+**4. Como usuário, eu gostaria de visualizar o resultado do meu score financeiro. (Higor)**
   - Criar tela para exibir o resultado do score financeiro
 
 
-**5. Como admin, eu gostaria de visualizar relatórios de erro do projeto.**
+**5. Como admin, eu gostaria de visualizar relatórios de erro do projeto.(Higor) **
   - Configurar o Crashlytics (firebase) para o frontend do projeto.
 
 
-**6. Como admin, eu gostaria de visualizar relatórios de erro do projeto.**
+**6. Como admin, eu gostaria de visualizar relatórios de erro do projeto. (Victor)**
   - Configurar o Analytics (firebase) para o frontend do projeto.
