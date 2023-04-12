@@ -19,7 +19,7 @@
 https://www.figma.com/file/qaL3u8jHNONZWWk7Kv7xTm/Quick-Job?node-id=0-1&t=fMcnoSEYKsQ3QicS-0
 
 ## Backlog do produto
-**1. Como usuário, eu gostaria de me cadastrar no sistema.**
+**1. Como candidato, eu gostaria de me cadastrar no sistema.**
 
 **2. Como empresa, eu gostaria de me cadastrar no sistema.**
 
@@ -31,11 +31,19 @@ https://www.figma.com/file/qaL3u8jHNONZWWk7Kv7xTm/Quick-Job?node-id=0-1&t=fMcnoS
 
 **6. Como empresa, eu gostaria de mudar o status de uma vaga.**
 
-**7. Como usuário, eu gostaria de visualizar as vagas.**
+**7. Como candidato, eu gostaria de visualizar as vagas.**
 
-**8. Como usuário, eu gostaria de me candidatar para uma vaga.**
+**8. Como candidato, eu gostaria de me candidatar para uma vaga.**
 
-**9. Como usuário, eu gostaria de visualizar para quais vagas eu já me candidatei.**
+**9. Como candidato, eu gostaria de visualizar para quais vagas eu já me candidatei.**
+
+**10. Como candidato, eu gostaria de cadastrar as minhas skills.**
+
+**11. Como empresa, eu gostaria de cadastrar skills para uma vaga.**
+
+**12. Como empresa, eu gostaria de visualizar possíveis candidatos para uma vaga baseado nas skills.**
+
+**13. Como candidato, eu gostaria de visualizar possíveis vagas baseado nas minhas skills.**
 
 
 ## Backlog da Sprint 1
