@@ -7,8 +7,8 @@
 - Victor Vieira de Melo - Fullstack
 
 ## Escopo
-- O sistema tem como objetivo calcular o score financeiro do usuário baseado no quanto ele ganha por ano e quando ele gasta por mês.
-- Inicialmente sistema possui três features, uma onde o usuário informa os dados financeiros dele, outra onde ele consegue visualizar o resultado do score financeiro e uma outra onde ele consegue visualizar um gráfico com a evolução do seu score.
+- O sistema tem como objetivo ser uma plataforma de procura de empregos expressa. Ou seja, você apenas visualiza as vagas e envia o seu currículo, e caso a empresa goste do seu perfil ela entrará em contato.
+- Inicialmente sistema permite o cadastro tanto de um usuário quando de uma empresa. O usuário pode visualizar as vagas e enviar o seu currículo. Ja as empresas podem criar vagas e visualizar os candidatos que candidataram-se para elas.
 
 ## Tecnologias
 1. Front -> Flutter
@@ -16,61 +16,65 @@
 3. DB -> PostgresSQL
 
 ## Protótipo
-https://www.figma.com/file/9H2lNOJDPoH7ixRGwKXhej/PDS-TP
+https://www.figma.com/file/qaL3u8jHNONZWWk7Kv7xTm/Quick-Job?node-id=0-1&t=fMcnoSEYKsQ3QicS-0
 
 ## Backlog do produto
-**1. Como usuário, eu gostaria de me cadastrar no sistema.**
+**1. Como candidato, eu gostaria de me cadastrar no sistema.**
 
-**2. Como usuário, eu gostaria de realizar login pelo Google.**
+**2. Como empresa, eu gostaria de me cadastrar no sistema.**
 
-**3. Como usuário, eu gostaria de calcular o meu score financeiro.**
+**3. Como empresa, eu gostaria de criar uma vaga.**
 
-**4. Como usuário, eu gostaria de visualizar o resultado do meu score financeiro.**
+**4. Como empresa, eu gostaria de visualizar minhas vagas.**
 
-**5. Como admin, eu gostaria de visualizar relatórios de erro do projeto.**
+**5. Como empresa, eu gostaria de visualizar os usuários que candidataram-se para minhas vagas.**
 
-**6. Como admin, eu gostaria de saber quantos usuários realizaram o cálculo do seu score financeiro.**
+**6. Como empresa, eu gostaria de mudar o status de uma vaga.**
 
-**7. Como usuário, eu gostaria de editar as informações de um score financeiro.**
+**7. Como candidato, eu gostaria de visualizar as vagas.**
 
-**8. Como usuário, eu gostaria de excluir o resultado de um score financeiro.**
+**8. Como candidato, eu gostaria de me candidatar para uma vaga.**
 
-**9. Como usuário, eu gostaria de filtrar por resultados de score financeiro.**
- 
-**10. Como usuário, eu gostaria de visualizar o histórico dos meus scores em uma tabela.**
+**9. Como candidato, eu gostaria de visualizar para quais vagas eu já me candidatei.**
 
-**11. Como usuário, eu gostaria de visualizar o histórico dos meus scores em forma de gráfico.**
- 
-**12. Como usuário, eu gostaria de visualizar o sistema no navegador do meu celular.**
+**10. Como candidato, eu gostaria de cadastrar as minhas skills.**
+
+**11. Como empresa, eu gostaria de cadastrar skills para uma vaga.**
+
+**12. Como empresa, eu gostaria de visualizar possíveis candidatos para uma vaga baseado nas skills.**
+
+**13. Como candidato, eu gostaria de visualizar possíveis vagas baseado nas minhas skills.**
 
 
 ## Backlog da Sprint 1
-**1. Como usuário, eu gostaria de me cadastrar no sistema.**
-  - Configurar bando de dados e criar primeiras tabelas.
+**1. Como usuário, eu gostaria de me cadastrar no sistema. (Gabriel Chaves)**
+  - Configurar banco de dados e criar primeiras tabelas.
   - Configurar o swagger no backend.
   - Criar imagem do docker para rodar o backend projeto.
-  - Criar rota de autenticação.
-  - Criar tela de SignIn/SignUp.
+  - Criar rota de autenticação para usuário.
+  - Criar tela de SignIn/SignUp para usuario.
 
 
-**2. Como usuário, eu gostaria de realizar login pelo Google.**
-  - Configurar o firebase para o projeto.
-  - Configurar a autenticação pelo Google utilizando o firebase.
-  - Adaptar tela de SignIn/SignUp.
+**2. Como empresa, eu gostaria de me cadastrar no sistema. (Philippe)**
+  - Criar rota de autenticação para empresa.
+  - Criar tela de SignIn/SignUp para empresa.
 
 
-**3. Como usuário, eu gostaria de calcular o meu score financeiro.**
-  - Criar e testar a rota para calcular o score financeiro, utilizando NestJS.
-  - Criar formulário para preencher os dados financeiros conforme protótipo do figma.
+**3. Como empresa, eu gostaria de criar uma vaga. (Victor)**
+  - Criar rota para criar vaga.
+  - Criar formulário para criar vaga conforme protótipo do figma.
 
 
-**4. Como usuário, eu gostaria de visualizar o resultado do meu score financeiro.**
-  - Criar tela para exibir o resultado do score financeiro
+**4. Como empresa, eu gostaria de visualizar minhas vagas. (Higor)**
+  - Criar rota listar as vagas de uma empresa.
+  - Criar tela para exibir listagem de vagas.
 
 
-**5. Como admin, eu gostaria de visualizar relatórios de erro do projeto.**
-  - Configurar o Crashlytics (firebase) para o frontend do projeto.
+**5. Como empresa, eu gostaria de visualizar os currículos dos usuários que candidataram-se para minhas vagas.(Higor)**
+  - Criar rota para listar os currículos dos usuários que candidataram-se as vagas.
+  - Criar tela para exibir os currículos dos usuários que candidataram-se as vagas.
 
 
-**6. Como admin, eu gostaria de visualizar relatórios de erro do projeto.**
-  - Configurar o Analytics (firebase) para o frontend do projeto.
+**6. Como usuário, eu gostaria de visualizar as vagas. (Victor)**
+  - Criar rota para listar as vagas.
+  - Criar tela para exibir as vagas para um usuario.
