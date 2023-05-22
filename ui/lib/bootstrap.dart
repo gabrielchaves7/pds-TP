@@ -1,14 +1,12 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:authentication_repository/authentication_repository.dart';
 import 'package:bloc/bloc.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/widgets.dart';
-import 'package:get_it/get_it.dart';
-import 'package:premium_todo/modules/shared_preferences/shared_preferences.dart';
-import 'package:premium_todo/modules/todo/todo.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-final getIt = GetIt.instance;
+import 'package:premium_todo/firebase_options.dart';
+import 'package:premium_todo/modules/app/view/app.dart';
 
 class AppBlocObserver extends BlocObserver {
   const AppBlocObserver();
@@ -27,20 +25,12 @@ class AppBlocObserver extends BlocObserver {
 }
 
 Future<void> setup() async {
-  final sharedPreferences = await SharedPreferences.getInstance();
-  getIt
-    ..registerSingleton<SharedPreferences>(sharedPreferences)
-    //datasources
-
-    ..registerLazySingleton<DataSource>(SharedPreferencesDataSource.new)
-    //repository
-    ..registerLazySingleton<TodoRepository>(TodoRepository.new)
-    ..registerLazySingleton<AddTodoUC>(AddTodoUC.new)
-    ..registerLazySingleton<GetTodosUC>(GetTodosUC.new)
-    ..registerLazySingleton<DeleteTodoUC>(DeleteTodoUC.new);
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 }
 
-Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
+Future<void> bootstrap() async {
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
@@ -48,8 +38,12 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = const AppBlocObserver();
   await setup();
+
+  final authenticationRepository = AuthenticationRepository();
+  await authenticationRepository.user.first;
+
   await runZonedGuarded(
-    () async => runApp(await builder()),
+    () async => runApp(App(authenticationRepository: authenticationRepository)),
     (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
   );
 }
