@@ -40,8 +40,8 @@ class DsOutlinedButton extends StatelessWidget {
       constraints: const BoxConstraints(
         minHeight: 40,
         maxHeight: 40,
-        maxWidth: 320,
-        minWidth: 320,
+        maxWidth: 548,
+        minWidth: 548,
       ),
       child: OutlinedButton(
         onPressed: enabled ? onPressed : null,

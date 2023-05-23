@@ -8,7 +8,7 @@ import 'package:premium_todo/design_system/atoms/text_styles.dart';
 class DSTextField extends StatelessWidget {
   ///
   const DSTextField({
-    required this.controller,
+    this.controller,
     this.label,
     this.leadingIconPath,
     this.textInputType,
@@ -18,11 +18,12 @@ class DSTextField extends StatelessWidget {
     this.maxLines = 1,
     this.hintText,
     this.enabled = true,
+    this.obscureText = false,
     super.key,
   });
 
   /// Text controller
-  final TextEditingController controller;
+  final TextEditingController? controller;
 
   /// Label displayed on top of the input field
   final String? label;
@@ -51,18 +52,21 @@ class DSTextField extends StatelessWidget {
   /// If text field allows user input
   final bool enabled;
 
+  final bool obscureText;
+
   @override
   Widget build(BuildContext context) {
     final hasError = errorText != null;
     return Container(
       constraints: const BoxConstraints(
-        maxWidth: 320,
+        maxWidth: 548,
         minWidth: 232,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           TextField(
+            obscureText: obscureText,
             controller: controller,
             enabled: enabled,
             onChanged: (value) => onChanged?.call(value.replaceAll(',', '')),
@@ -75,7 +79,8 @@ class DSTextField extends StatelessWidget {
               ),
             ),
             decoration: InputDecoration(
-              border: const OutlineInputBorder(),
+              label: label != null ? Text(label!) : null,
+              border: const UnderlineInputBorder(),
               hintText: hintText,
               contentPadding: const EdgeInsets.symmetric(
                 vertical: DsSpacing.xs,
@@ -85,16 +90,16 @@ class DSTextField extends StatelessWidget {
                 maxHeight: 24,
                 maxWidth: 40,
               ),
-              enabledBorder: const OutlineInputBorder(
+              enabledBorder: const UnderlineInputBorder(
                 borderSide: BorderSide(color: DsColors.blueGray50),
               ),
-              focusedBorder: const OutlineInputBorder(
+              focusedBorder: const UnderlineInputBorder(
                 borderSide: BorderSide(color: DsColors.brandColorPrimary),
               ),
-              focusedErrorBorder: const OutlineInputBorder(
+              focusedErrorBorder: const UnderlineInputBorder(
                 borderSide: BorderSide(color: DsColors.red700),
               ),
-              errorBorder: const OutlineInputBorder(
+              errorBorder: const UnderlineInputBorder(
                 borderSide: BorderSide(color: DsColors.red700),
               ),
               errorText: errorText,
