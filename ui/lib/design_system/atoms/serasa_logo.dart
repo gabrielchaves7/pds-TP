@@ -13,14 +13,13 @@ class SerasaLogo extends StatelessWidget {
   Widget build(Object context) {
     return Container(
       width: 100,
-      height: 32,
       decoration: const BoxDecoration(
         shape: BoxShape.circle,
       ),
       child: SvgPicture.asset(
         Assets.assets_logo_svg,
         semanticsLabel: 'Image with text Origin',
-        fit: BoxFit.cover,
+        fit: BoxFit.fitWidth,
       ),
     );
   }

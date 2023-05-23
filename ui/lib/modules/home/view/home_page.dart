@@ -1,42 +1,60 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:premium_todo/design_system/design_system.dart';
+import 'package:premium_todo/design_system/organisms/serasa_page.dart';
 import 'package:premium_todo/modules/app/app.dart';
-import 'package:premium_todo/modules/home/widgets/avatar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   static Page<void> page() => const MaterialPage<void>(child: HomePage());
+  static MaterialPageRoute<void> pageRoute() => MaterialPageRoute<void>(
+        builder: (context) => const HomePage(),
+        settings: const RouteSettings(name: AppRoutes.HOME_PAGE),
+      );
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-    final user = context.select((AppBloc bloc) => bloc.state.user);
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-        actions: <Widget>[
-          IconButton(
-            key: const Key('homePage_logout_iconButton'),
-            icon: const Icon(Icons.exit_to_app),
-            onPressed: () {
-              context.read<AppBloc>().add(const AppLogoutRequested());
-            },
-          )
+    return SerasaPage(
+      body: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          RichText(
+            text: const TextSpan(
+              style: TextStyle(
+                fontFamily: 'WorkSans',
+                fontWeight: FontWeight.w400,
+                fontSize: 44,
+                color: Colors.black,
+              ),
+              text: 'Encontre a sua ',
+              children: <TextSpan>[
+                TextSpan(
+                  text: 'vaga',
+                  style: TextStyle(
+                    fontFamily: 'Rubik',
+                    fontWeight: FontWeight.w600,
+                    fontSize: 44,
+                    color: DsColors.brandColorPrimary,
+                  ),
+                ),
+                TextSpan(
+                  text: ' hoje',
+                  style: TextStyle(
+                    fontFamily: 'WorkSans',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 44,
+                    color: Colors.black,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const Text('''
+Milhares de empregos para jovens da ciência de computação, sistemas de informação, e outros setores estão esperando por você.'''),
+          SizedBox(height: 4),
+          SizedBox(height: 4),
         ],
-      ),
-      body: Align(
-        alignment: const Alignment(0, -1 / 3),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Avatar(photo: user.photo),
-            const SizedBox(height: 4),
-            Text(user.email ?? '', style: textTheme.titleLarge),
-            const SizedBox(height: 4),
-            Text(user.name ?? '', style: textTheme.headlineSmall),
-          ],
-        ),
       ),
     );
   }

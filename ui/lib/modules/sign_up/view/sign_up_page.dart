@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:premium_todo/design_system/design_system.dart';
 import 'package:premium_todo/design_system/organisms/serasa_page.dart';
+import 'package:premium_todo/modules/app/routes/routes.dart';
 import 'package:premium_todo/modules/sign_up/sign_up.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});
-
-  static Route<void> route() {
-    return MaterialPageRoute<void>(builder: (_) => const SignUpPage());
-  }
+  static MaterialPageRoute<void> pageRoute() => MaterialPageRoute<void>(
+        builder: (context) => const SignUpPage(),
+        settings: const RouteSettings(name: AppRoutes.SIGNUP_PAGE),
+      );
 
   @override
   Widget build(BuildContext context) {

@@ -3,12 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:premium_todo/design_system/design_system.dart';
 import 'package:premium_todo/design_system/organisms/serasa_page.dart';
+import 'package:premium_todo/modules/app/app.dart';
 import 'package:premium_todo/modules/login/login.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   static Page<void> page() => const MaterialPage<void>(child: LoginPage());
+  static MaterialPageRoute<void> pageRoute() => MaterialPageRoute<void>(
+        builder: (context) => const LoginPage(),
+        settings: const RouteSettings(name: AppRoutes.LOGIN_PAGE),
+      );
 
   @override
   Widget build(BuildContext context) {

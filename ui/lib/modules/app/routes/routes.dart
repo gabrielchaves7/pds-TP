@@ -14,3 +14,9 @@ List<Page<dynamic>> onGenerateAppViewPages(
       return [LoginPage.page()];
   }
 }
+
+class AppRoutes {
+  static const LOGIN_PAGE = '/login_page';
+  static const SIGNUP_PAGE = '/signup_page';
+  static const HOME_PAGE = '/home_page';
+}
