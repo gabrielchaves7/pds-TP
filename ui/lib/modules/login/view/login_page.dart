@@ -15,13 +15,12 @@ class LoginPage extends StatelessWidget {
     return SerasaPage(
       body: Center(
         child: SingleChildScrollView(
-          child: Container(
+          child: SizedBox(
             width: 548,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 RichText(
-                  textAlign: TextAlign.start,
                   text: const TextSpan(
                     style: TextStyle(
                       fontFamily: 'Rubik',

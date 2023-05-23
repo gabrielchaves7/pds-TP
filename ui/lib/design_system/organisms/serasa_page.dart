@@ -17,10 +17,7 @@ class SerasaPage extends StatelessWidget {
     return Scaffold(
       appBar: const SerasaAppBar().build(context),
       backgroundColor: DsColors.background,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: SerasaSpacing.xx),
-        child: body,
-      ),
+      body: body,
     );
   }
 }
