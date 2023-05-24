@@ -55,7 +55,7 @@ https://www.figma.com/file/qaL3u8jHNONZWWk7Kv7xTm/Quick-Job?node-id=0-1&t=fMcnoS
   - Criar tela de SignIn/SignUp para usuario.
 
 
-**2. Como empresa, eu gostaria de me cadastrar no sistema. (Philippe)**
+**2. Como empresa, eu gostaria de me cadastrar no sistema. (Gabriel Chaves)**
   - Criar rota de autenticação para empresa.
   - Criar tela de SignIn/SignUp para empresa.
 
