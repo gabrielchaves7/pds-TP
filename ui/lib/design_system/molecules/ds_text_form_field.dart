@@ -10,7 +10,7 @@ class DSTextField extends StatelessWidget {
   const DSTextField({
     this.controller,
     this.label,
-    this.leadingIconPath,
+    this.prefixIcon,
     this.textInputType,
     this.inputFormatters,
     this.errorText,
@@ -29,7 +29,7 @@ class DSTextField extends StatelessWidget {
   final String? label;
 
   /// leading icon
-  final String? leadingIconPath;
+  final Widget? prefixIcon;
 
   /// The type of information for which to optimize the text input control
   final TextInputType? textInputType;
@@ -82,6 +82,7 @@ class DSTextField extends StatelessWidget {
               label: label != null ? Text(label!) : null,
               border: const UnderlineInputBorder(),
               hintText: hintText,
+              prefixIcon: prefixIcon,
               contentPadding: const EdgeInsets.symmetric(
                 vertical: DsSpacing.xs,
                 horizontal: DsSpacing.x,

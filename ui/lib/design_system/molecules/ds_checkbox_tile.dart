@@ -31,9 +31,6 @@ class DsCheckboxTile extends StatelessWidget {
       contentPadding: EdgeInsets.zero,
       title: Text(
         title,
-        style: value
-            ? const TextStyle(decoration: TextDecoration.lineThrough)
-            : null,
       ),
       leading: DsCheckbox(
         value: value,
