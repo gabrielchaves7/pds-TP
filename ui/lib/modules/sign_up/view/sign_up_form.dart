@@ -30,6 +30,8 @@ class SignUpForm extends StatelessWidget {
           _PasswordInput(),
           const SizedBox(height: 8),
           _ConfirmPasswordInput(),
+          const SizedBox(height: 8),
+          _RoleDropdown(),
           const SizedBox(height: 24),
           _SignUpButton(),
         ],
@@ -101,6 +103,44 @@ class _ConfirmPasswordInput extends StatelessWidget {
   }
 }
 
+class _RoleDropdown extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SignUpCubit, SignUpState>(
+      buildWhen: (previous, current) => previous.role != current.role,
+      builder: (context, state) {
+        return Row(
+          children: [
+            Expanded(
+              child: DropdownButton<String>(
+                value: state.role.value,
+                isExpanded: true,
+                icon: const Icon(Icons.arrow_downward),
+                elevation: 16,
+                style: const TextStyle(color: Colors.deepPurple),
+                underline: Container(
+                  height: 2,
+                  color: Colors.deepPurpleAccent,
+                ),
+                onChanged: (String? value) {
+                  context.read<SignUpCubit>().roleChanged(value ?? '');
+                },
+                items: ['COMPANY', 'APPLICANT']
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+}
+
 class _SignUpButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -113,7 +153,7 @@ class _SignUpButton extends StatelessWidget {
                 onPressed: state.isValid
                     ? () => context.read<SignUpCubit>().signUpFormSubmitted()
                     : null,
-                child: const Text('SIGN UP'),
+                child: const Text('CRIAR CONTA'),
               );
       },
     );

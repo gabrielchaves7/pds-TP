@@ -3,6 +3,7 @@ import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:premium_todo/modules/app/app.dart';
+import 'package:premium_todo/modules/app/bloc/user_role_bloc.dart';
 import 'package:premium_todo/theme.dart';
 
 class App extends StatelessWidget {
@@ -17,10 +18,19 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return RepositoryProvider.value(
       value: _authenticationRepository,
-      child: BlocProvider(
-        create: (_) => AppBloc(
-          authenticationRepository: _authenticationRepository,
-        ),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider<AppBloc>(
+            create: (_) => AppBloc(
+              authenticationRepository: _authenticationRepository,
+            ),
+          ),
+          BlocProvider<UserRoleCubit>(
+            create: (_) => UserRoleCubit(
+              authenticationRepository: _authenticationRepository,
+            ),
+          ),
+        ],
         child: const AppView(),
       ),
     );

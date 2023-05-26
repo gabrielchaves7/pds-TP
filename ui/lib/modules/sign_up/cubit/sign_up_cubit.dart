@@ -20,6 +20,7 @@ class SignUpCubit extends Cubit<SignUpState> {
           email,
           state.password,
           state.confirmedPassword,
+          state.role,
         ]),
       ),
     );
@@ -39,6 +40,7 @@ class SignUpCubit extends Cubit<SignUpState> {
           state.email,
           password,
           confirmedPassword,
+          state.role,
         ]),
       ),
     );
@@ -56,6 +58,22 @@ class SignUpCubit extends Cubit<SignUpState> {
           state.email,
           state.password,
           confirmedPassword,
+          state.role,
+        ]),
+      ),
+    );
+  }
+
+  void roleChanged(String value) {
+    final role = Role.dirty(value);
+    emit(
+      state.copyWith(
+        role: role,
+        isValid: Formz.validate([
+          state.email,
+          state.password,
+          state.confirmedPassword,
+          role,
         ]),
       ),
     );
@@ -68,6 +86,7 @@ class SignUpCubit extends Cubit<SignUpState> {
       await _authenticationRepository.signUp(
         email: state.email.value,
         password: state.password.value,
+        role: state.role.value,
       );
       emit(state.copyWith(status: FormzSubmissionStatus.success));
     } on SignUpWithEmailAndPasswordFailure catch (e) {

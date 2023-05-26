@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:cache/cache.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:google_sign_in/google_sign_in.dart';
@@ -182,6 +183,7 @@ class AuthenticationRepository {
   Stream<User> get user {
     return _firebaseAuth.authStateChanges().map((firebaseUser) {
       final user = firebaseUser == null ? User.empty : firebaseUser.toUser;
+      if (user.isNotEmpty) {}
       _cache.write(key: userCacheKey, value: user);
       return user;
     });
@@ -196,12 +198,18 @@ class AuthenticationRepository {
   /// Creates a new user with the provided [email] and [password].
   ///
   /// Throws a [SignUpWithEmailAndPasswordFailure] if an exception occurs.
-  Future<void> signUp({required String email, required String password}) async {
+  Future<void> signUp(
+      {required String email,
+      required String password,
+      required String role}) async {
     try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
+      final userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
+      if (userCredential.user != null) {
+        _insertUserOnFirestore(userCredential.user!.toUser, role);
+      }
     } on firebase_auth.FirebaseAuthException catch (e) {
       throw SignUpWithEmailAndPasswordFailure.fromCode(e.code);
     } catch (_) {
@@ -270,6 +278,22 @@ class AuthenticationRepository {
     } catch (_) {
       throw LogOutFailure();
     }
+  }
+
+  Future<void> _insertUserOnFirestore(User user, String role) async {
+    var db = FirebaseFirestore.instance;
+    var map = user.toJson();
+    map.addAll({"role": role});
+
+    await db.collection("users").add(map);
+  }
+
+  Future<String?> getUserRole() async {
+    var db = FirebaseFirestore.instance;
+    final usersRef = db.collection("users");
+    final query = await usersRef.where("id", isEqualTo: currentUser.id).get();
+
+    return query.docs.first.data()["role"] ?? "";
   }
 }
 

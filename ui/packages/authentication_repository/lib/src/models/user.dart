@@ -1,18 +1,22 @@
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
+part 'user.g.dart';
+
+enum UserRole {
+  APPLICANT,
+  COMPANY,
+}
 
 /// {@template user}
 /// User model
 ///
 /// [User.empty] represents an unauthenticated user.
 /// {@endtemplate}
+
+@JsonSerializable()
 class User extends Equatable {
   /// {@macro user}
-  const User({
-    required this.id,
-    this.email,
-    this.name,
-    this.photo,
-  });
+  const User({required this.id, this.email, this.name, this.photo});
 
   /// The current user's email address.
   final String? email;
@@ -37,4 +41,8 @@ class User extends Equatable {
 
   @override
   List<Object?> get props => [email, id, name, photo];
+
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UserToJson(this);
 }

@@ -1,8 +1,10 @@
+import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:premium_todo/design_system/atoms/serasa_logo.dart';
 import 'package:premium_todo/design_system/design_system.dart';
 import 'package:premium_todo/modules/app/app.dart';
+import 'package:premium_todo/modules/app/bloc/user_role_bloc.dart';
 import 'package:premium_todo/modules/home/home.dart';
 import 'package:premium_todo/modules/login/view/login_page.dart';
 
@@ -17,12 +19,17 @@ class SerasaAppBar extends StatelessWidget {
       backgroundColor: DsColors.background,
       title: BlocBuilder<AppBloc, AppState>(
         builder: (context, state) {
-          Widget widget = const SizedBox();
-          if (ModalRoute.of(context)?.settings.name == AppRoutes.HOME_PAGE ||
-              state.status == AppStatus.authenticated) {
-            widget = getTitle(context, state);
-          }
-          return widget;
+          return BlocBuilder<UserRoleCubit, UserRole?>(
+            builder: (context, userRoleState) {
+              Widget widget = const SizedBox();
+              if (ModalRoute.of(context)?.settings.name ==
+                      AppRoutes.HOME_PAGE ||
+                  state.status == AppStatus.authenticated) {
+                widget = getTitle(context, state, userRoleState);
+              }
+              return widget;
+            },
+          );
         },
       ),
       centerTitle: true,
@@ -35,17 +42,26 @@ class SerasaAppBar extends StatelessWidget {
     );
   }
 
-  Widget getTitle(BuildContext context, AppState state) {
+  Widget getTitle(BuildContext context, AppState state, UserRole? role) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        GestureDetector(
-          onTap: () {},
-          child: const Text(
-            'Procurar',
-            style: TextStyle(color: Colors.black),
+        if (role == UserRole.COMPANY)
+          GestureDetector(
+            onTap: () {},
+            child: const Text(
+              'Criar vagas',
+              style: TextStyle(color: Colors.black),
+            ),
+          )
+        else
+          GestureDetector(
+            onTap: () {},
+            child: const Text(
+              'Procurar',
+              style: TextStyle(color: Colors.black),
+            ),
           ),
-        ),
         const SizedBox(
           width: 16,
         ),

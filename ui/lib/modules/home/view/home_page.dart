@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:premium_todo/design_system/design_system.dart';
 import 'package:premium_todo/design_system/organisms/serasa_page.dart';
 import 'package:premium_todo/modules/app/app.dart';
+import 'package:premium_todo/modules/app/bloc/user_role_bloc.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   static Page<void> page() => const MaterialPage<void>(child: HomePage());
@@ -11,6 +13,17 @@ class HomePage extends StatelessWidget {
         builder: (context) => const HomePage(),
         settings: const RouteSettings(name: AppRoutes.HOME_PAGE),
       );
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    context.read<UserRoleCubit>().getUserRole();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
