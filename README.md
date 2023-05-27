@@ -47,7 +47,7 @@ https://www.figma.com/file/qaL3u8jHNONZWWk7Kv7xTm/Quick-Job?node-id=0-1&t=fMcnoS
 
 
 ## Backlog da Sprint 1
-**1. Como usuário, eu gostaria de me cadastrar no sistema. (Gabriel Chaves)**
+**1. Como usuário, eu gostaria de me cadastrar no sistema. **
   - Configurar banco de dados e criar primeiras tabelas.
   - Configurar o swagger no backend.
   - Criar imagem do docker para rodar o backend projeto.
@@ -55,26 +55,26 @@ https://www.figma.com/file/qaL3u8jHNONZWWk7Kv7xTm/Quick-Job?node-id=0-1&t=fMcnoS
   - Criar tela de SignIn/SignUp para usuario.
 
 
-**2. Como empresa, eu gostaria de me cadastrar no sistema. (Gabriel Chaves)**
+**2. Como empresa, eu gostaria de me cadastrar no sistema. **
   - Criar rota de autenticação para empresa.
   - Criar tela de SignIn/SignUp para empresa.
 
 
-**3. Como empresa, eu gostaria de criar uma vaga. (Victor)**
+**3. Como empresa, eu gostaria de criar uma vaga. **
   - Criar rota para criar vaga.
   - Criar formulário para criar vaga conforme protótipo do figma.
 
 
-**4. Como empresa, eu gostaria de visualizar minhas vagas. (Higor)**
+**4. Como empresa, eu gostaria de visualizar minhas vagas. **
   - Criar rota listar as vagas de uma empresa.
   - Criar tela para exibir listagem de vagas.
 
 
-**5. Como empresa, eu gostaria de visualizar os currículos dos usuários que candidataram-se para minhas vagas.(Higor)**
+**5. Como empresa, eu gostaria de visualizar os currículos dos usuários que candidataram-se para minhas vagas.**
   - Criar rota para listar os currículos dos usuários que candidataram-se as vagas.
   - Criar tela para exibir os currículos dos usuários que candidataram-se as vagas.
 
 
-**6. Como usuário, eu gostaria de visualizar as vagas. (Victor)**
+**6. Como usuário, eu gostaria de visualizar as vagas.**
   - Criar rota para listar as vagas.
   - Criar tela para exibir as vagas para um usuario.
