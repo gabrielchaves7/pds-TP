@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 
 class DsColors {
-  static const Color brandColorPrimary = Color.fromRGBO(0, 28, 149, 1);
+  static const Color brandColorPrimary = Color(0xFF3575E2);
   static const Color brandColorPrimaryLight = Color.fromRGBO(204, 213, 255, 1);
   static const Color neutralWhite = Color.fromRGBO(255, 255, 255, 1);
   static const Color background = Color.fromRGBO(244, 248, 250, 1);
