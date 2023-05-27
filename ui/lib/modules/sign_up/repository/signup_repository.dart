@@ -5,6 +5,7 @@ import 'package:cache/cache.dart';
 import 'package:premium_todo/bootstrap.dart';
 import 'package:premium_todo/modules/http/http_provider.dart';
 import 'package:premium_todo/modules/sign_up/repository/user.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignUpRepository {
   SignUpRepository({
@@ -26,7 +27,15 @@ class SignUpRepository {
   /// Returns the current cached user.
   /// Defaults to [User.empty] if there is no cached user.
   NUser get currentUser {
-    return _cache.read<NUser>(key: userCacheKey) ?? NUser.empty;
+    final json = _cache.readSp(
+      key: userCacheKey,
+      prefs: getIt<SharedPreferences>(),
+    );
+    if (json != null) {
+      return NUser.fromJson(jsonDecode(json) as Map<String, dynamic>);
+    }
+
+    return NUser.empty;
   }
 
   Future<void> post({
@@ -48,7 +57,11 @@ class SignUpRepository {
         jsonDecode(response.body)['user'] as Map<String, dynamic>,
       );
 
-      _cache.write(key: userCacheKey, value: user);
+      _cache.writeSP(
+        key: userCacheKey,
+        value: jsonEncode(user.toJson()),
+        prefs: getIt<SharedPreferences>(),
+      );
       _userStreamController.add(user);
     } catch (e) {
       print(e);
@@ -72,7 +85,11 @@ class SignUpRepository {
         jsonDecode(response.body)['user'] as Map<String, dynamic>,
       );
 
-      _cache.write(key: userCacheKey, value: user);
+      _cache.writeSP(
+        key: userCacheKey,
+        value: jsonEncode(user.toJson()),
+        prefs: getIt<SharedPreferences>(),
+      );
       _userStreamController.add(user);
     } catch (e) {
       print(e);
@@ -81,7 +98,13 @@ class SignUpRepository {
 
   Future<void> logOut() async {
     const user = NUser.empty;
-    _cache.write(key: userCacheKey, value: user);
+    _cache.writeSP(
+      prefs: getIt<SharedPreferences>(),
+      key: userCacheKey,
+      value: jsonEncode(
+        user.toJson(),
+      ),
+    );
     _userStreamController.add(user);
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:premium_todo/design_system/atoms/serasa_logo.dart';
 import 'package:premium_todo/design_system/design_system.dart';
+import 'package:premium_todo/design_system/organisms/ds_create_job.dart';
 import 'package:premium_todo/modules/app/app.dart';
 import 'package:premium_todo/modules/home/home.dart';
 import 'package:premium_todo/modules/login/view/login_page.dart';
@@ -42,7 +43,14 @@ class SerasaAppBar extends StatelessWidget {
       children: [
         if (state.user.role == UserRole.COMPANY)
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              showDialog<void>(
+                context: context,
+                builder: (builder) => const Dialog(
+                  child: DsCreateJob(),
+                ),
+              );
+            },
             child: const Text(
               'Criar vagas',
               style: TextStyle(color: Colors.black),

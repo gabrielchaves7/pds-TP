@@ -11,6 +11,7 @@ import 'package:premium_todo/modules/home/repository/home_repository.dart';
 import 'package:premium_todo/modules/http/http_provider.dart';
 import 'package:premium_todo/modules/http/http_provider_impl.dart';
 import 'package:premium_todo/modules/sign_up/repository/signup_repository.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final getIt = GetIt.instance;
 
@@ -31,10 +32,12 @@ class AppBlocObserver extends BlocObserver {
 }
 
 Future<void> setup() async {
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
   getIt
     ..registerSingleton<IHttpProvider>(HttpProvider())
     ..registerLazySingleton<SignUpRepository>(SignUpRepository.new)
-    ..registerLazySingleton<HomeRepository>(HomeRepository.new);
+    ..registerLazySingleton<HomeRepository>(HomeRepository.new)
+    ..registerSingleton<SharedPreferences>(prefs);
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

@@ -8,3 +8,5 @@ environment:
 
 dev_dependencies:
   test: ^1.17.11
+dependencies:
+  shared_preferences: ^2.1.1
