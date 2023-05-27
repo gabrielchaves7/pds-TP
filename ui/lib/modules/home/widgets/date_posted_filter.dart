@@ -3,7 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:premium_todo/design_system/atoms/ds_radio.dart';
 import 'package:premium_todo/design_system/atoms/spacing.dart';
 import 'package:premium_todo/design_system/atoms/text_styles.dart';
-import 'package:premium_todo/modules/home/bloc/date_posted_filter_cubit.dart';
+import 'package:premium_todo/modules/home/bloc/home_cubit.dart';
+import 'package:premium_todo/modules/home/bloc/home_state.dart';
 
 enum DatePostedFilter {
   all,
@@ -15,7 +16,7 @@ enum DatePostedFilter {
 class DatePosted extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<DatePostedFilterCubit, DatePostedFilter>(
+    return BlocBuilder<HomeCubit, HomeState>(
       buildWhen: (previous, current) => previous != current,
       builder: (context, state) {
         return Wrap(
@@ -30,30 +31,34 @@ class DatePosted extends StatelessWidget {
             DsRadio<DatePostedFilter>(
               title: 'Todas',
               value: DatePostedFilter.all,
-              groupValue: state,
-              onChanged: (DatePostedFilter? value) =>
-                  context.read<DatePostedFilterCubit>().update(value!),
+              groupValue: state.filterQuery.datePostedFilter,
+              onChanged: (DatePostedFilter? value) => context
+                  .read<HomeCubit>()
+                  .updateQuery(datePostedFilter: value),
             ),
             DsRadio<DatePostedFilter>(
               title: '24h',
               value: DatePostedFilter.last24h,
-              groupValue: state,
-              onChanged: (DatePostedFilter? value) =>
-                  context.read<DatePostedFilterCubit>().update(value!),
+              groupValue: state.filterQuery.datePostedFilter,
+              onChanged: (DatePostedFilter? value) => context
+                  .read<HomeCubit>()
+                  .updateQuery(datePostedFilter: value),
             ),
             DsRadio<DatePostedFilter>(
               title: '3 dias',
               value: DatePostedFilter.last3days,
-              groupValue: state,
-              onChanged: (DatePostedFilter? value) =>
-                  context.read<DatePostedFilterCubit>().update(value!),
+              groupValue: state.filterQuery.datePostedFilter,
+              onChanged: (DatePostedFilter? value) => context
+                  .read<HomeCubit>()
+                  .updateQuery(datePostedFilter: value),
             ),
             DsRadio<DatePostedFilter>(
               title: '7 dias',
               value: DatePostedFilter.last7days,
-              groupValue: state,
-              onChanged: (DatePostedFilter? value) =>
-                  context.read<DatePostedFilterCubit>().update(value!),
+              groupValue: state.filterQuery.datePostedFilter,
+              onChanged: (DatePostedFilter? value) => context
+                  .read<HomeCubit>()
+                  .updateQuery(datePostedFilter: value),
             ),
           ],
         );

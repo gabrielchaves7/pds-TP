@@ -3,9 +3,12 @@ import 'package:premium_todo/assets.dart';
 import 'package:premium_todo/design_system/design_system.dart';
 import 'package:premium_todo/design_system/molecules/ds_icon_and_title.dart';
 import 'package:premium_todo/design_system/organisms/ds_file_picker_widget.dart';
+import 'package:premium_todo/modules/home/repository/job.dart';
 
-class DsCompanyCard extends StatelessWidget {
-  const DsCompanyCard({super.key});
+class DsJobCard extends StatelessWidget {
+  const DsJobCard({required this.job, super.key});
+
+  final Job job;
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +35,9 @@ class DsCompanyCard extends StatelessWidget {
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    'Empresa 1',
-                    style: TextStyle(fontSize: 18),
+                  Text(
+                    job.companyName ?? 'Nome indisponível',
+                    style: const TextStyle(fontSize: 18),
                   ),
                   SizedBox(
                     width: 150,
@@ -53,9 +56,9 @@ class DsCompanyCard extends StatelessWidget {
                     const SizedBox(
                       height: 4,
                     ),
-                    const Text(
-                      'Software Engineer',
-                      style: TextStyle(
+                    Text(
+                      job.name,
+                      style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.w500,
                       ),
@@ -68,7 +71,7 @@ class DsCompanyCard extends StatelessWidget {
                       children: [
                         DsIconAndTitle(
                           icon: const Icon(Icons.location_on),
-                          title: 'Contagem',
+                          title: job.location,
                         ),
                         DsIconAndTitle(
                           icon: const Icon(Icons.schedule),
@@ -76,7 +79,7 @@ class DsCompanyCard extends StatelessWidget {
                         ),
                         DsIconAndTitle(
                           icon: const Icon(Icons.attach_money),
-                          title: '30-32k',
+                          title: '${job.minSalary}-${job.maxSalary}',
                         ),
                         DsIconAndTitle(
                           icon: const Icon(Icons.calendar_month),
@@ -87,10 +90,7 @@ class DsCompanyCard extends StatelessWidget {
                     const SizedBox(
                       height: DsSpacing.xx,
                     ),
-                    const Text(
-                      '''
-Mollit in laborum tempor Lorem incididunt irure. Aute eu ex ad sunt. Pariatur sint culpa do incididunt eiusmod eiusmod culpa. laborum tempor Lorem incididunt.''',
-                    ),
+                    Text(job.description),
                   ],
                 ),
               ),
