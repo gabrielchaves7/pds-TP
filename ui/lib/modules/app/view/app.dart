@@ -1,4 +1,3 @@
-import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,24 +8,18 @@ import 'package:premium_todo/theme.dart';
 
 class App extends StatelessWidget {
   const App({
-    required AuthenticationRepository authenticationRepository,
     super.key,
-  }) : _authenticationRepository = authenticationRepository;
-
-  final AuthenticationRepository _authenticationRepository;
+  });
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider.value(
-      value: _authenticationRepository,
-      child: MultiBlocProvider(
-        providers: [
-          BlocProvider<AppBloc>(
-            create: (_) => AppBloc(signUpRepository: getIt<SignUpRepository>()),
-          ),
-        ],
-        child: const AppView(),
-      ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<AppBloc>(
+          create: (_) => AppBloc(signUpRepository: getIt<SignUpRepository>()),
+        ),
+      ],
+      child: const AppView(),
     );
   }
 }

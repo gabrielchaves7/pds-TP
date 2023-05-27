@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:authentication_repository/authentication_repository.dart';
 import 'package:cache/cache.dart';
 import 'package:premium_todo/bootstrap.dart';
 import 'package:premium_todo/modules/http/http_provider.dart';

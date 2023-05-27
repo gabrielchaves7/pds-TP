@@ -1,13 +1,13 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:authentication_repository/authentication_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get_it/get_it.dart';
 import 'package:premium_todo/firebase_options.dart';
 import 'package:premium_todo/modules/app/view/app.dart';
+import 'package:premium_todo/modules/home/repository/home_repository.dart';
 import 'package:premium_todo/modules/http/http_provider.dart';
 import 'package:premium_todo/modules/http/http_provider_impl.dart';
 import 'package:premium_todo/modules/sign_up/repository/signup_repository.dart';
@@ -33,7 +33,8 @@ class AppBlocObserver extends BlocObserver {
 Future<void> setup() async {
   getIt
     ..registerSingleton<IHttpProvider>(HttpProvider())
-    ..registerLazySingleton<SignUpRepository>(SignUpRepository.new);
+    ..registerLazySingleton<SignUpRepository>(SignUpRepository.new)
+    ..registerLazySingleton<HomeRepository>(HomeRepository.new);
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -48,11 +49,8 @@ Future<void> bootstrap() async {
   Bloc.observer = const AppBlocObserver();
   await setup();
 
-  final authenticationRepository = AuthenticationRepository();
-  await authenticationRepository.user.first;
-
   await runZonedGuarded(
-    () async => runApp(App(authenticationRepository: authenticationRepository)),
+    () async => runApp(App()),
     (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
   );
 }

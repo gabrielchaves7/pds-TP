@@ -1,4 +1,3 @@
-import 'package:authentication_repository/authentication_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:form_inputs/form_inputs.dart';
@@ -94,13 +93,6 @@ class SignUpCubit extends Cubit<SignUpState> {
         role: state.role.value,
       );
       emit(state.copyWith(status: FormzSubmissionStatus.success));
-    } on SignUpWithEmailAndPasswordFailure catch (e) {
-      emit(
-        state.copyWith(
-          errorMessage: e.message,
-          status: FormzSubmissionStatus.failure,
-        ),
-      );
     } catch (_) {
       emit(state.copyWith(status: FormzSubmissionStatus.failure));
     }
