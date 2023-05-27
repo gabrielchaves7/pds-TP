@@ -13,6 +13,8 @@ import { AnnualCostsThreshold } from './score/entity/annual-costs-threshold.enti
 import { ScoreDataSource } from './score/datasource/score.datasource';
 import { AnnualCostsThresholdDataSource } from './score/datasource/annual-costs-threshold.datasource';
 import { TaxDataSource } from './tax/datasource/tax.datasource';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -31,6 +33,8 @@ import { TaxDataSource } from './tax/datasource/tax.datasource';
     }),
     ScoreModule,
     TaxModule,
+    AuthModule,
+    UsersModule,
   ],
   controllers: [ScoreController, TaxController],
   providers: [
