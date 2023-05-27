@@ -4,7 +4,6 @@ import 'package:premium_todo/design_system/design_system.dart';
 import 'package:premium_todo/design_system/organisms/ds_company_card.dart';
 import 'package:premium_todo/design_system/organisms/serasa_page.dart';
 import 'package:premium_todo/modules/app/app.dart';
-import 'package:premium_todo/modules/app/bloc/user_role_bloc.dart';
 import 'package:premium_todo/modules/home/bloc/date_posted_filter_cubit.dart';
 import 'package:premium_todo/modules/home/bloc/location_filter_cubit.dart';
 import 'package:premium_todo/modules/home/bloc/required_experience_filter.dart';
@@ -28,7 +27,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   void initState() {
-    context.read<UserRoleCubit>().getUserRole();
     super.initState();
   }
 

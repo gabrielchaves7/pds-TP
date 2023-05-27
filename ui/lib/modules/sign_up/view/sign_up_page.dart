@@ -1,4 +1,3 @@
-import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:premium_todo/design_system/design_system.dart';
@@ -48,8 +47,7 @@ class SignUpPage extends StatelessWidget {
                 const Text('''
       Enim tempor eget pharetra facilisis sed maecenas adipiscing. Eu leo molestie vel, ornare non id blandit netus.'''),
                 BlocProvider<SignUpCubit>(
-                  create: (_) =>
-                      SignUpCubit(context.read<AuthenticationRepository>()),
+                  create: (_) => SignUpCubit(),
                   child: const SignUpForm(),
                 )
               ],

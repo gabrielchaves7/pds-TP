@@ -129,7 +129,9 @@ class _GoogleLoginButton extends StatelessWidget {
           backgroundColor: Colors.white,
         ),
         icon: const Icon(FontAwesomeIcons.google, color: Colors.red),
-        onPressed: () => context.read<LoginCubit>().logInWithGoogle(),
+        onPressed: () {
+          // context.read<LoginCubit>().logInWithGoogle();
+        },
       ),
     );
   }

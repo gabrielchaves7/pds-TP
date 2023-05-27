@@ -2,8 +2,9 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:premium_todo/bootstrap.dart';
 import 'package:premium_todo/modules/app/app.dart';
-import 'package:premium_todo/modules/app/bloc/user_role_bloc.dart';
+import 'package:premium_todo/modules/sign_up/repository/signup_repository.dart';
 import 'package:premium_todo/theme.dart';
 
 class App extends StatelessWidget {
@@ -21,14 +22,7 @@ class App extends StatelessWidget {
       child: MultiBlocProvider(
         providers: [
           BlocProvider<AppBloc>(
-            create: (_) => AppBloc(
-              authenticationRepository: _authenticationRepository,
-            ),
-          ),
-          BlocProvider<UserRoleCubit>(
-            create: (_) => UserRoleCubit(
-              authenticationRepository: _authenticationRepository,
-            ),
+            create: (_) => AppBloc(signUpRepository: getIt<SignUpRepository>()),
           ),
         ],
         child: const AppView(),

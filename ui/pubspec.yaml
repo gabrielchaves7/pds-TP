@@ -16,6 +16,8 @@ dependencies:
   dartz: ^0.10.1
   dotted_border: ^2.0.0+3
   equatable: ^2.0.5
+  cache:
+    path: packages/cache
   file_picker: ^5.3.1
   firebase_auth: ^4.6.1
   firebase_core: ^2.13.0
@@ -30,16 +32,17 @@ dependencies:
   form_inputs:
     path: packages/form_inputs
   formz: ^0.6.0
-  get_it: ^7.2.0
+  get_it: ^7.6.0
   google_fonts: ^4.0.0
   rxdart: ^0.27.7
   shared_preferences: ^2.1.0
   uuid: ^3.0.7
+  json_annotation: ^4.8.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  json_serializable: ^6.6.1
+  json_serializable: ^6.7.0
   mocktail: ^0.3.0
   very_good_analysis: ^3.1.0
 

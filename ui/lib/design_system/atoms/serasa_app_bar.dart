@@ -1,12 +1,11 @@
-import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:premium_todo/design_system/atoms/serasa_logo.dart';
 import 'package:premium_todo/design_system/design_system.dart';
 import 'package:premium_todo/modules/app/app.dart';
-import 'package:premium_todo/modules/app/bloc/user_role_bloc.dart';
 import 'package:premium_todo/modules/home/home.dart';
 import 'package:premium_todo/modules/login/view/login_page.dart';
+import 'package:premium_todo/modules/sign_up/repository/user.dart';
 
 /// AppBar with logo
 class SerasaAppBar extends StatelessWidget {
@@ -19,17 +18,12 @@ class SerasaAppBar extends StatelessWidget {
       backgroundColor: DsColors.background,
       title: BlocBuilder<AppBloc, AppState>(
         builder: (context, state) {
-          return BlocBuilder<UserRoleCubit, UserRole?>(
-            builder: (context, userRoleState) {
-              Widget widget = const SizedBox();
-              if (ModalRoute.of(context)?.settings.name ==
-                      AppRoutes.HOME_PAGE ||
-                  state.status == AppStatus.authenticated) {
-                widget = getTitle(context, state, userRoleState);
-              }
-              return widget;
-            },
-          );
+          Widget widget = const SizedBox();
+          if (ModalRoute.of(context)?.settings.name == AppRoutes.HOME_PAGE ||
+              state.status == AppStatus.authenticated) {
+            widget = getTitle(context, state);
+          }
+          return widget;
         },
       ),
       centerTitle: true,
@@ -42,11 +36,11 @@ class SerasaAppBar extends StatelessWidget {
     );
   }
 
-  Widget getTitle(BuildContext context, AppState state, UserRole? role) {
+  Widget getTitle(BuildContext context, AppState state) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        if (role == UserRole.COMPANY)
+        if (state.user.role == UserRole.COMPANY)
           GestureDetector(
             onTap: () {},
             child: const Text(
