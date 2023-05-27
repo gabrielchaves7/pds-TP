@@ -3,7 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:premium_todo/design_system/atoms/spacing.dart';
 import 'package:premium_todo/design_system/atoms/text_styles.dart';
 import 'package:premium_todo/design_system/molecules/ds_checkbox_tile.dart';
-import 'package:premium_todo/modules/home/bloc/workload_filter_cubit.dart';
+import 'package:premium_todo/modules/home/bloc/home_cubit.dart';
+import 'package:premium_todo/modules/home/bloc/home_state.dart';
 
 class Workload extends StatelessWidget {
   @override
@@ -17,33 +18,33 @@ class Workload extends StatelessWidget {
             style: DsTextStyles.filterTitle,
           ),
         ),
-        BlocBuilder<FulltimeFilterCubit, bool>(
+        BlocBuilder<HomeCubit, HomeState>(
           builder: (context, state) {
             return DsCheckboxTile(
               title: 'Full-time',
-              value: state,
+              value: state.filterQuery.fullTimeFilter,
               onChanged: (bool? value) =>
-                  context.read<FulltimeFilterCubit>().update(value!),
+                  context.read<HomeCubit>().updateQuery(fullTimeFilter: value),
             );
           },
         ),
-        BlocBuilder<InterimFilterCubit, bool>(
+        BlocBuilder<HomeCubit, HomeState>(
           builder: (context, state) {
             return DsCheckboxTile(
               title: 'Temporário',
-              value: state,
+              value: state.filterQuery.interimFilter,
               onChanged: (bool? value) =>
-                  context.read<InterimFilterCubit>().update(value!),
+                  context.read<HomeCubit>().updateQuery(interimFilter: value),
             );
           },
         ),
-        BlocBuilder<PartTimeFilterCubit, bool>(
+        BlocBuilder<HomeCubit, HomeState>(
           builder: (context, state) {
             return DsCheckboxTile(
               title: 'Meio período',
-              value: state,
+              value: state.filterQuery.partTimeFilter,
               onChanged: (bool? value) =>
-                  context.read<PartTimeFilterCubit>().update(value!),
+                  context.read<HomeCubit>().updateQuery(partTimeFilter: value),
             );
           },
         ),

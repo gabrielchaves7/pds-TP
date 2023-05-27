@@ -3,7 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:premium_todo/design_system/atoms/ds_radio.dart';
 import 'package:premium_todo/design_system/atoms/spacing.dart';
 import 'package:premium_todo/design_system/atoms/text_styles.dart';
-import 'package:premium_todo/modules/home/bloc/location_filter_cubit.dart';
+import 'package:premium_todo/modules/home/bloc/home_cubit.dart';
+import 'package:premium_todo/modules/home/bloc/home_state.dart';
 
 enum LocationFilter {
   near,
@@ -13,7 +14,7 @@ enum LocationFilter {
 class LocationFilterWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LocationFilterCubit, LocationFilter>(
+    return BlocBuilder<HomeCubit, HomeState>(
       buildWhen: (previous, current) => previous != current,
       builder: (BuildContext context, state) {
         return Wrap(
@@ -28,16 +29,16 @@ class LocationFilterWidget extends StatelessWidget {
             DsRadio<LocationFilter>(
               title: 'Perto de mim',
               value: LocationFilter.near,
-              groupValue: state,
+              groupValue: state.filterQuery.locationFilter,
               onChanged: (LocationFilter? value) =>
-                  context.read<LocationFilterCubit>().update(value!),
+                  context.read<HomeCubit>().updateQuery(locationFilter: value),
             ),
             DsRadio<LocationFilter>(
               title: 'Remoto',
               value: LocationFilter.homeOffice,
-              groupValue: state,
+              groupValue: state.filterQuery.locationFilter,
               onChanged: (LocationFilter? value) =>
-                  context.read<LocationFilterCubit>().update(value!),
+                  context.read<HomeCubit>().updateQuery(locationFilter: value),
             ),
           ],
         );
