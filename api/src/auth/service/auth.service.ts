@@ -6,6 +6,7 @@ import {
 } from '@nestjs/common';
 import { UsersService } from '../../users/users.service';
 import { JwtService } from '@nestjs/jwt';
+import { UserRole } from '../../users/entity/user.entity';
 
 @Dependencies(UsersService, JwtService)
 @Injectable()
@@ -20,7 +21,15 @@ export class AuthService {
     if (user?.password !== pass) {
       throw new UnauthorizedException();
     }
-    const payload = { username: user.username, sub: user.userId };
+    const payload = { username: user.username, sub: user.id };
+    return {
+      access_token: await this.jwtService.signAsync(payload),
+    };
+  }
+
+  async signUp(username: string, pass: string, role: UserRole) {
+    const user = await this.usersService.create(username, pass, role);
+    const payload = { username: user.username, sub: user.id };
     return {
       access_token: await this.jwtService.signAsync(payload),
     };

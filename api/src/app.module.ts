@@ -15,6 +15,7 @@ import { AnnualCostsThresholdDataSource } from './score/datasource/annual-costs-
 import { TaxDataSource } from './tax/datasource/tax.datasource';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { User } from './users/entity/user.entity';
 
 @Module({
   imports: [
@@ -27,7 +28,7 @@ import { UsersModule } from './users/users.module';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       synchronize: true,
-      entities: [Score, Tax, AnnualCostsThreshold],
+      entities: [Score, Tax, AnnualCostsThreshold, User],
 
       migrations: [],
     }),

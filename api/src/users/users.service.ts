@@ -1,24 +1,22 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
+import { UsersDataSource } from './datasource/user.datasource';
 
 @Injectable()
 export class UsersService {
-  users;
-  constructor() {
-    this.users = [
-      {
-        userId: 1,
-        username: 'john',
-        password: 'changeme',
-      },
-      {
-        userId: 2,
-        username: 'maria',
-        password: 'guess',
-      },
-    ];
-  }
+  constructor(
+    @Inject(UsersDataSource) private readonly usersDataSource: UsersDataSource,
+  ) {}
 
   async findOne(username) {
-    return this.users.find((user) => user.username === username);
+    var user = await this.usersDataSource.findOne(username);
+    return user;
+  }
+
+  async create(username, password, role) {
+    return this.usersDataSource.save({
+      username,
+      password,
+      role,
+    });
   }
 }

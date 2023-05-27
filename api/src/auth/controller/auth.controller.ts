@@ -11,6 +11,7 @@ import {
 import { AuthGuard } from '../auth.guard';
 import { AuthService } from '../service/auth.service';
 import { LoginRequestDto } from '../dto/login.dto';
+import { SignupRequestDto } from '../dto/signup.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -20,6 +21,16 @@ export class AuthController {
   @Post('login')
   signIn(@Body() signInDto: LoginRequestDto) {
     return this.authService.signIn(signInDto.username, signInDto.password);
+  }
+
+  @HttpCode(HttpStatus.OK)
+  @Post('signup')
+  signUp(@Body() signUpDto: SignupRequestDto) {
+    return this.authService.signUp(
+      signUpDto.username,
+      signUpDto.password,
+      signUpDto.role,
+    );
   }
 
   @UseGuards(AuthGuard)
