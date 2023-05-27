@@ -16,6 +16,10 @@ import { TaxDataSource } from './tax/datasource/tax.datasource';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { User } from './users/entity/user.entity';
+import { JobsModule } from './job/job.module';
+import { JobsController } from './job/controller/job.controller';
+import { JobsDataSource } from './job/datasource/job.datasource';
+import { Job } from './job/entity/job.entity';
 
 @Module({
   imports: [
@@ -28,7 +32,7 @@ import { User } from './users/entity/user.entity';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       synchronize: true,
-      entities: [Score, Tax, AnnualCostsThreshold, User],
+      entities: [Score, Tax, AnnualCostsThreshold, User, Job],
 
       migrations: [],
     }),
@@ -36,14 +40,16 @@ import { User } from './users/entity/user.entity';
     TaxModule,
     AuthModule,
     UsersModule,
+    JobsModule,
   ],
-  controllers: [ScoreController, TaxController],
+  controllers: [ScoreController, TaxController, JobsController],
   providers: [
     ScoreService,
     ScoreDataSource,
     AnnualCostsThresholdDataSource,
     TaxService,
     TaxDataSource,
+    JobsDataSource,
   ],
 })
 export class AppModule {}
