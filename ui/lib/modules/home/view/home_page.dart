@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:premium_todo/assets.dart';
 import 'package:premium_todo/design_system/atoms/ds_radio.dart';
 import 'package:premium_todo/design_system/design_system.dart';
+import 'package:premium_todo/design_system/molecules/ds_icon_and_title.dart';
+import 'package:premium_todo/design_system/organisms/ds_company_card.dart';
 import 'package:premium_todo/design_system/organisms/serasa_page.dart';
 import 'package:premium_todo/modules/app/app.dart';
 import 'package:premium_todo/modules/app/bloc/user_role_bloc.dart';
@@ -93,15 +95,15 @@ class _HomePageState extends State<HomePage> {
                 )
               ],
             ),
-            Row(
+            Wrap(
               children: [
-                Container(
+                SizedBox(
                   width: 250,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Filtros'),
+                      const Text('Filtros'),
                       LocationFilterWidget(),
                       Salary(),
                       DatePosted(),
@@ -110,48 +112,7 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
-                Container(
-                  width: 750,
-                  child: Card(
-                    elevation: 2,
-                    child: ListTile(
-                      dense: true,
-                      leading: Image.asset(Assets.assets_icon_png),
-                      title: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: 500,
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('Empresa 1'),
-                                Text('Software Engineer'),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text('Contagem'),
-                                    Text('Full time'),
-                                    Text('\$ 30-32k'),
-                                    Text('1 dia atrás'),
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                          Container(
-                            width: 150,
-                            child: DsOutlinedButton(
-                                child: Text('Candidatou-se'), onPressed: () {}),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                )
+                DsCompanyCard()
               ],
             )
           ],
