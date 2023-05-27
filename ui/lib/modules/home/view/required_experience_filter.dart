@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:premium_todo/design_system/atoms/ds_radio.dart';
+import 'package:premium_todo/design_system/atoms/spacing.dart';
+import 'package:premium_todo/design_system/atoms/text_styles.dart';
 
 enum RequiredExperienceFilter {
   all,
@@ -12,7 +14,13 @@ class RequiredExperience extends StatelessWidget {
   Widget build(BuildContext context) {
     return Wrap(
       children: [
-        const Text('Experiência exigida'),
+        Padding(
+          padding: const EdgeInsets.only(bottom: DsSpacing.xs),
+          child: Text(
+            'Experiência exigida',
+            style: DsTextStyles.filterTitle,
+          ),
+        ),
         DsRadio<RequiredExperienceFilter>(
           title: 'Qualquer experiência',
           value: RequiredExperienceFilter.all,

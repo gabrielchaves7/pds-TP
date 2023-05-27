@@ -86,4 +86,16 @@ class DsTextStyles {
         fontSize: 16,
         color: DsColors.neutralWhite,
       );
+
+  static TextStyle get filterTitle => const TextStyle(
+        fontWeight: FontWeight.w500,
+        fontSize: 18,
+        color: Color(0xff141414),
+      );
+
+  static TextStyle get filterText => const TextStyle(
+        fontWeight: FontWeight.w400,
+        fontSize: 16,
+        color: Color(0xff393F47),
+      );
 }

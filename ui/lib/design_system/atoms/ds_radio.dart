@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:premium_todo/design_system/design_system.dart';
 
 /// Widget that loads an checkbox.
 class DsRadio<T> extends StatelessWidget {
@@ -18,19 +19,31 @@ class DsRadio<T> extends StatelessWidget {
 
   @override
   Widget build(Object context) {
-    return Row(
-      children: [
-        Radio<T>(
-          visualDensity: const VisualDensity(
-            horizontal: VisualDensity.minimumDensity,
-            vertical: VisualDensity.minimumDensity,
+    return Padding(
+      padding: const EdgeInsets.only(
+        bottom: 8,
+      ),
+      child: Row(
+        children: [
+          Radio<T>(
+            activeColor: Color(0xFF3575E2),
+            visualDensity: const VisualDensity(
+              horizontal: VisualDensity.minimumDensity,
+              vertical: VisualDensity.minimumDensity,
+            ),
+            value: value,
+            groupValue: groupValue,
+            onChanged: onChanged,
           ),
-          value: value,
-          groupValue: groupValue,
-          onChanged: onChanged,
-        ),
-        Text(title)
-      ],
+          const SizedBox(
+            width: DsSpacing.x,
+          ),
+          Text(
+            title,
+            style: DsTextStyles.filterText,
+          )
+        ],
+      ),
     );
   }
 }

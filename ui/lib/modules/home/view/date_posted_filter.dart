@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:premium_todo/design_system/atoms/ds_radio.dart';
+import 'package:premium_todo/design_system/atoms/spacing.dart';
+import 'package:premium_todo/design_system/atoms/text_styles.dart';
 
 enum DatePostedFilter {
   all,
@@ -13,7 +15,13 @@ class DatePosted extends StatelessWidget {
   Widget build(BuildContext context) {
     return Wrap(
       children: [
-        const Text('Data da postgem'),
+        Padding(
+          padding: const EdgeInsets.only(bottom: DsSpacing.xs),
+          child: Text(
+            'Data da postgem',
+            style: DsTextStyles.filterTitle,
+          ),
+        ),
         DsRadio<DatePostedFilter>(
           title: 'Todas',
           value: DatePostedFilter.all,

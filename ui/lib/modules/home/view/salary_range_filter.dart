@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:premium_todo/design_system/atoms/ds_radio.dart';
+import 'package:premium_todo/design_system/design_system.dart';
 
 enum SalaryRangeFilter {
   any,
@@ -14,7 +15,13 @@ class Salary extends StatelessWidget {
   Widget build(BuildContext context) {
     return Wrap(
       children: [
-        const Text('Salário'),
+        Padding(
+          padding: const EdgeInsets.only(bottom: DsSpacing.xs),
+          child: Text(
+            'Salário',
+            style: DsTextStyles.filterTitle,
+          ),
+        ),
         DsRadio(
           title: 'Any',
           value: SalaryRangeFilter.any,

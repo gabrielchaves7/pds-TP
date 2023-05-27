@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:premium_todo/design_system/atoms/ds_radio.dart';
+import 'package:premium_todo/design_system/atoms/spacing.dart';
+import 'package:premium_todo/design_system/atoms/text_styles.dart';
 
 enum LocationFilter {
   near,
@@ -11,7 +13,13 @@ class LocationFilterWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Wrap(
       children: [
-        const Text('Localização'),
+        Padding(
+          padding: const EdgeInsets.only(bottom: DsSpacing.xs),
+          child: Text(
+            'Localização',
+            style: DsTextStyles.filterTitle,
+          ),
+        ),
         DsRadio<LocationFilter>(
           title: 'Perto de mim',
           value: LocationFilter.near,

@@ -97,19 +97,46 @@ class _HomePageState extends State<HomePage> {
             ),
             Wrap(
               children: [
-                SizedBox(
-                  width: 250,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text('Filtros'),
-                      LocationFilterWidget(),
-                      Salary(),
-                      DatePosted(),
-                      RequiredExperience(),
-                      Workload(),
-                    ],
+                Card(
+                  elevation: 2,
+                  child: Padding(
+                    padding: const EdgeInsets.all(DsSpacing.xxx),
+                    child: SizedBox(
+                      width: 250,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Filtros',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: DsSpacing.xx,
+                          ),
+                          LocationFilterWidget(),
+                          const SizedBox(
+                            height: DsSpacing.xx,
+                          ),
+                          Salary(),
+                          const SizedBox(
+                            height: DsSpacing.xx,
+                          ),
+                          DatePosted(),
+                          const SizedBox(
+                            height: DsSpacing.xx,
+                          ),
+                          RequiredExperience(),
+                          const SizedBox(
+                            height: DsSpacing.xx,
+                          ),
+                          Workload(),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
                 DsCompanyCard()

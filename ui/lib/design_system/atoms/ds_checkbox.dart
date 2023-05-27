@@ -21,7 +21,8 @@ class DsCheckbox extends StatelessWidget {
     return Checkbox(
       value: value,
       onChanged: onChanged,
-      checkColor: DsColors.brandColorPrimary,
+      checkColor: Colors.white,
+      activeColor: Color(0xFF3575E2),
     );
   }
 }

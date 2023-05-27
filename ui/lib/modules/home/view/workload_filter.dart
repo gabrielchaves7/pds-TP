@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:premium_todo/design_system/atoms/spacing.dart';
+import 'package:premium_todo/design_system/atoms/text_styles.dart';
 import 'package:premium_todo/design_system/molecules/ds_checkbox_tile.dart';
 
 class Workload extends StatelessWidget {
@@ -6,7 +8,13 @@ class Workload extends StatelessWidget {
   Widget build(BuildContext context) {
     return Wrap(
       children: [
-        const Text('Carga horária'),
+        Padding(
+          padding: const EdgeInsets.only(bottom: DsSpacing.xs),
+          child: Text(
+            'Carga horária',
+            style: DsTextStyles.filterTitle,
+          ),
+        ),
         DsCheckboxTile(
           title: 'Full-time',
           value: true,
