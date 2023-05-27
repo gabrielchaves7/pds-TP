@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:premium_todo/design_system/atoms/serasa_app_bar.dart';
 import 'package:premium_todo/design_system/design_system.dart';
-import 'package:premium_todo/design_system/serasa_spacing.dart';
 
 /// The default page with background color and appbar set.
 /// Use it on every page you create.

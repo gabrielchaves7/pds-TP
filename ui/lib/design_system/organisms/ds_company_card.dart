@@ -1,5 +1,3 @@
-import 'package:dotted_border/dotted_border.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:premium_todo/assets.dart';
 import 'package:premium_todo/design_system/design_system.dart';
@@ -15,7 +13,7 @@ class DsCompanyCard extends StatelessWidget {
       onTap: () {
         showDialog<void>(
           context: context,
-          builder: (builder) => Dialog(
+          builder: (builder) => const Dialog(
             child: DsFilePicker(),
           ),
         );
@@ -90,7 +88,8 @@ class DsCompanyCard extends StatelessWidget {
                       height: DsSpacing.xx,
                     ),
                     const Text(
-                      'Mollit in laborum tempor Lorem incididunt irure. Aute eu ex ad sunt. Pariatur sint culpa do incididunt eiusmod eiusmod culpa. laborum tempor Lorem incididunt.',
+                      '''
+Mollit in laborum tempor Lorem incididunt irure. Aute eu ex ad sunt. Pariatur sint culpa do incididunt eiusmod eiusmod culpa. laborum tempor Lorem incididunt.''',
                     ),
                   ],
                 ),

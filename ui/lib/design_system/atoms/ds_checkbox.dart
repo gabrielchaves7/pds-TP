@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:premium_todo/design_system/atoms/colors.dart';
 
 /// Widget that loads an checkbox.
 class DsCheckbox extends StatelessWidget {
@@ -22,7 +21,7 @@ class DsCheckbox extends StatelessWidget {
       value: value,
       onChanged: onChanged,
       checkColor: Colors.white,
-      activeColor: Color(0xFF3575E2),
+      activeColor: const Color(0xFF3575E2),
     );
   }
 }

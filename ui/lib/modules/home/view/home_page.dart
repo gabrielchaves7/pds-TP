@@ -1,18 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:premium_todo/assets.dart';
-import 'package:premium_todo/design_system/atoms/ds_radio.dart';
 import 'package:premium_todo/design_system/design_system.dart';
-import 'package:premium_todo/design_system/molecules/ds_icon_and_title.dart';
 import 'package:premium_todo/design_system/organisms/ds_company_card.dart';
 import 'package:premium_todo/design_system/organisms/serasa_page.dart';
 import 'package:premium_todo/modules/app/app.dart';
 import 'package:premium_todo/modules/app/bloc/user_role_bloc.dart';
-import 'package:premium_todo/modules/home/view/date_posted_filter.dart';
-import 'package:premium_todo/modules/home/view/location_filter.dart';
-import 'package:premium_todo/modules/home/view/required_experience_filter.dart';
-import 'package:premium_todo/modules/home/view/salary_range_filter.dart';
-import 'package:premium_todo/modules/home/view/workload_filter.dart';
+import 'package:premium_todo/modules/home/widgets/widgets.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
