@@ -16,7 +16,7 @@ class SerasaAppBar extends StatelessWidget {
   @override
   AppBar build(BuildContext context) {
     return AppBar(
-      backgroundColor: DsColors.background,
+      backgroundColor: Colors.white,
       title: BlocBuilder<AppBloc, AppState>(
         builder: (context, state) {
           Widget widget = const SizedBox();
