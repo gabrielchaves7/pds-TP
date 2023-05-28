@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:premium_todo/bootstrap.dart';
 import 'package:premium_todo/modules/app/app.dart';
+import 'package:premium_todo/modules/home/bloc/create_job_cubit.dart';
 import 'package:premium_todo/modules/home/bloc/home_cubit.dart';
 import 'package:premium_todo/modules/sign_up/repository/signup_repository.dart';
 import 'package:premium_todo/theme.dart';
@@ -21,6 +22,9 @@ class App extends StatelessWidget {
         ),
         BlocProvider<HomeCubit>(
           create: (_) => HomeCubit(),
+        ),
+        BlocProvider<CreateJobCubit>(
+          create: (_) => CreateJobCubit(),
         ),
       ],
       child: const AppView(),
