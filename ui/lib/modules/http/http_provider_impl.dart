@@ -26,7 +26,7 @@ class HttpProvider implements IHttpProvider {
 
   void _validateResponse(http.Response response) {
     if (!response.ok) {
-      throw Exception();
+      throw Exception(response.body);
     }
   }
 
