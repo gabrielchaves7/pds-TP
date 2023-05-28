@@ -43,4 +43,12 @@ export class JobsDataSource {
   async findOne(id: number): Promise<Job> {
     return this.jobRepository.findOneBy({ id });
   }
+
+  async get(): Promise<Job[]> {
+    return this.jobRepository.find({
+      order: {
+        date: 'DESC',
+      },
+    });
+  }
 }

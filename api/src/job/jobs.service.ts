@@ -12,6 +12,11 @@ export class JobsService {
     return job;
   }
 
+  async get() {
+    var jobs = await this.jobsDataSource.get();
+    return jobs;
+  }
+
   async create(
     name,
     description,
