@@ -75,9 +75,9 @@ export class JobDto {
 
   @IsEnum(ExperienceLevel)
   @ApiProperty({
-    enum: ['INTERN', 'JUNIOR', 'MID_LEVEL', 'SENIOR'],
+    enum: ['ALL', 'entryLevel', 'midSeniorLevel'],
     description: 'Experience level of job',
-    default: ExperienceLevel.MID_LEVEL,
+    default: ExperienceLevel.ALL,
   })
   experience: ExperienceLevel;
 }

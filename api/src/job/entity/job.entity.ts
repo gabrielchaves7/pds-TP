@@ -14,10 +14,9 @@ export enum JobType {
 }
 
 export enum ExperienceLevel {
-  INTERN = 'INTERN',
-  JUNIOR = 'JUNIOR',
-  MID_LEVEL = 'MID_LEVEL',
-  SENIOR = 'SENIOR',
+  ALL = 'ALL',
+  ENTRYLEVEL = 'entryLevel',
+  MIDSENIORLEVEL = 'midSeniorLevel',
 }
 
 @Entity()
@@ -63,7 +62,7 @@ export class Job {
   @Column({
     type: 'enum',
     enum: ExperienceLevel,
-    default: ExperienceLevel.MID_LEVEL,
+    default: ExperienceLevel.ALL,
   })
   experience: ExperienceLevel;
 
