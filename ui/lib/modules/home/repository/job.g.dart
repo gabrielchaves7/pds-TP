@@ -17,6 +17,7 @@ Job _$JobFromJson(Map<String, dynamic> json) => Job(
       companyName: json['companyName'] as String?,
       experience:
           $enumDecode(_$RequiredExperienceFilterEnumMap, json['experience']),
+      imageUrl: json['imageUrl'] as String?,
     );
 
 Map<String, dynamic> _$JobToJson(Job instance) => <String, dynamic>{
@@ -28,6 +29,7 @@ Map<String, dynamic> _$JobToJson(Job instance) => <String, dynamic>{
       'contactPhone': instance.contactPhone,
       'email': instance.email,
       'description': instance.description,
+      'imageUrl': instance.imageUrl,
       'experience': _$RequiredExperienceFilterEnumMap[instance.experience]!,
     };
 
