@@ -6,6 +6,7 @@ import 'package:formz/formz.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:premium_todo/design_system/design_system.dart';
 import 'package:premium_todo/design_system/organisms/ds_image_picker.dart';
+import 'package:premium_todo/modules/app/app.dart';
 import 'package:premium_todo/modules/home/bloc/create_job_cubit.dart';
 import 'package:premium_todo/modules/home/bloc/create_job_state.dart';
 import 'package:premium_todo/modules/home/bloc/home_cubit.dart';
@@ -96,17 +97,18 @@ class _DsCreateJobState extends State<DsCreateJob> {
                   ),
                   BlocBuilder<CreateJobCubit, CreateJobState>(
                     builder: (context, state) {
+                      final createJobCubit = context.read<CreateJobCubit>();
+                      final homeCubit = context.read<HomeCubit>();
+                      final appBloc = context.read<AppBloc>();
                       return DsOutlinedButton(
                         onPressed: (state.isValid &&
                                 filePickerResult?.files.first != null)
                             ? () {
-                                context.read<CreateJobCubit>().createJob(
-                                    filePickerResult!.files.first.bytes!,
-                                    (newJob) {
-                                  context
-                                      .read<HomeCubit>()
-                                      .updateJobsList(newJob);
-                                });
+                                createJobCubit.createJob(
+                                  rawPath: filePickerResult!.files.first.bytes!,
+                                  onJobCreated: homeCubit.updateJobsList,
+                                  companyId: appBloc.state.user.id,
+                                );
                               }
                             : null,
                         child: const Text('Criar'),

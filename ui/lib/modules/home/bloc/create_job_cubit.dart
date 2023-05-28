@@ -41,7 +41,9 @@ class CreateJobCubit extends Cubit<CreateJobState> {
   }
 
   void createJob(
-      Uint8List rawPath, void Function(Job newJob) onJobCreated) async {
+      {required Uint8List rawPath,
+      required void Function(Job newJob) onJobCreated,
+      required int companyId}) async {
     try {
       emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
 
@@ -55,6 +57,7 @@ class CreateJobCubit extends Cubit<CreateJobState> {
           maxSalary: state.jobForm.maxSalary.value,
           minSalary: state.jobForm.minSalary.value,
           name: state.jobForm.name.value,
+          companyId: companyId,
           imageUrl: await createImageDownloadUrl(rawPath),
         ),
       );

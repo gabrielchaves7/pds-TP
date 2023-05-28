@@ -83,7 +83,9 @@ class DsJobCard extends StatelessWidget {
                         ),
                         DsIconAndTitle(
                           icon: const Icon(Icons.calendar_month),
-                          title: '1 dia atrás',
+                          title: job.date != null
+                              ? '${DateTime.now().difference(job.date!).inHours}h atrás'
+                              : 'Data indisponível',
                         ),
                       ],
                     ),

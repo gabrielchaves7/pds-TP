@@ -2,6 +2,7 @@ import { Injectable, Dependencies } from '@nestjs/common';
 import { getRepositoryToken, InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Job } from '../entity/job.entity';
+import { User } from 'src/users/entity/user.entity';
 
 @Injectable()
 @Dependencies(getRepositoryToken(Job))
@@ -9,6 +10,8 @@ export class JobsDataSource {
   constructor(
     @InjectRepository(Job)
     private readonly jobRepository: Repository<Job>,
+    @InjectRepository(User)
+    private readonly userRepository: Repository<User>,
   ) {}
 
   async save({
@@ -16,7 +19,7 @@ export class JobsDataSource {
     description,
     contactPhone,
     email,
-    // companyId,
+    companyId,
     location,
     type,
     minSalary,
@@ -24,12 +27,13 @@ export class JobsDataSource {
     imageUrl,
     experience,
   }): Promise<Job> {
+    const company = await this.userRepository.findOneBy({ id: companyId });
     const newJob = this.jobRepository.create({
       name,
       description,
       contactPhone,
       email,
-      // company,
+      company,
       location,
       type,
       minSalary,

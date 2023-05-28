@@ -36,10 +36,10 @@ export class JobDto {
   })
   email: string;
 
-  //   @ApiProperty({
-  //     description: 'Company id',
-  //   })
-  //   companyId: number;
+  @ApiProperty({
+    description: 'Company id',
+  })
+  companyId: number;
 
   @IsString()
   @ApiProperty({
