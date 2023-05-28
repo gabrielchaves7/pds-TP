@@ -16,6 +16,7 @@ class SerasaAppBar extends StatelessWidget {
   @override
   AppBar build(BuildContext context) {
     return AppBar(
+      elevation: 0,
       backgroundColor: Colors.white,
       title: BlocBuilder<AppBloc, AppState>(
         builder: (context, state) {
