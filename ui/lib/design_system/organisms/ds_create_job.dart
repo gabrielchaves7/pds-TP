@@ -1,10 +1,9 @@
-import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
+import 'package:formz/formz.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-import 'package:premium_todo/assets.dart';
 import 'package:premium_todo/design_system/design_system.dart';
 import 'package:premium_todo/design_system/organisms/ds_image_picker.dart';
 import 'package:premium_todo/modules/home/bloc/create_job_cubit.dart';
@@ -24,22 +23,25 @@ class _DsCreateJobState extends State<DsCreateJob> {
   Widget build(BuildContext context) {
     return BlocListener<CreateJobCubit, CreateJobState>(
       listener: (context, state) {
-        if (state.loading)
+        if (state.status == FormzSubmissionStatus.inProgress)
           context.loaderOverlay.show();
-        else if (!state.loading) {
+        else if (state.status == FormzSubmissionStatus.success) {
+          context.loaderOverlay.hide();
+          Navigator.of(context).pop();
+        } else {
           context.loaderOverlay.hide();
         }
       },
-      child: LoaderOverlay(
-        child: Padding(
-          padding: const EdgeInsets.all(DsSpacing.xxxxs),
-          child: Container(
-            constraints: const BoxConstraints(
-              maxWidth: 548,
-            ),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-            ),
+      child: Padding(
+        padding: const EdgeInsets.all(DsSpacing.xxxxs),
+        child: Container(
+          constraints: const BoxConstraints(
+            maxWidth: 548,
+          ),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: LoaderOverlay(
             child: SingleChildScrollView(
               child: Column(
                 children: [
@@ -91,12 +93,18 @@ class _DsCreateJobState extends State<DsCreateJob> {
                   const SizedBox(
                     height: 32,
                   ),
-                  DsOutlinedButton(
-                    child: Text('Criar'),
-                    onPressed: () {
-                      context
-                          .read<CreateJobCubit>()
-                          .createJob(filePickerResult!.files.first.bytes!);
+                  BlocBuilder<CreateJobCubit, CreateJobState>(
+                    builder: (context, state) {
+                      return DsOutlinedButton(
+                        child: Text('Criar'),
+                        onPressed: (state.isValid &&
+                                filePickerResult?.files.first != null)
+                            ? () {
+                                context.read<CreateJobCubit>().createJob(
+                                    filePickerResult!.files.first.bytes!);
+                              }
+                            : null,
+                      );
                     },
                   ),
                 ],

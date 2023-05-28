@@ -25,7 +25,7 @@ class _DsImagePickerState extends State<DsImagePicker> {
       onTap: () async {
         final result = await FilePicker.platform.pickFiles(
           type: FileType.custom,
-          allowedExtensions: ['jpg', 'png'],
+          allowedExtensions: ['png'],
         );
 
         widget.onFilePick(result);

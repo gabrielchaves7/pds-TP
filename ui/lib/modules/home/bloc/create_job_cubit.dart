@@ -2,6 +2,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
+import 'package:formz/formz.dart';
 import 'package:premium_todo/bootstrap.dart';
 import 'package:premium_todo/modules/home/bloc/create_job_state.dart';
 import 'package:premium_todo/modules/home/home.dart';
@@ -41,9 +42,9 @@ class CreateJobCubit extends Cubit<CreateJobState> {
 
   void createJob(Uint8List rawPath) async {
     try {
-      emit(state.copyWith(loading: true));
+      emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
       final storageRef = FirebaseStorage.instance.ref();
-      final jobRef = storageRef.child(const Uuid().toString());
+      final jobRef = storageRef.child('${Uuid().v4()}.png');
       await jobRef.putData(rawPath);
       final downloadUrl = await jobRef.getDownloadURL();
       await _jobsRepository.post(
@@ -59,8 +60,10 @@ class CreateJobCubit extends Cubit<CreateJobState> {
           imageUrl: downloadUrl,
         ),
       );
+      emit(state.copyWith(status: FormzSubmissionStatus.success));
     } catch (e) {
       print(e);
+      emit(state.copyWith(status: FormzSubmissionStatus.failure));
     }
   }
 }

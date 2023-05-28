@@ -1,11 +1,17 @@
 import 'package:equatable/equatable.dart';
 import 'package:form_inputs/form_inputs.dart';
+import 'package:formz/formz.dart';
 
 class CreateJobState extends Equatable {
-  const CreateJobState({this.jobForm = const JobForm(), this.loading = false});
+  const CreateJobState({
+    this.jobForm = const JobForm(),
+    this.isValid = false,
+    this.status = FormzSubmissionStatus.initial,
+  });
 
   final JobForm jobForm;
-  final bool loading;
+  final bool isValid;
+  final FormzSubmissionStatus status;
 
   @override
   List<Object?> get props => [jobForm];
@@ -18,7 +24,8 @@ class CreateJobState extends Equatable {
     JobMaxSalary? maxSalary,
     DefaultJobInput? phone,
     DefaultJobInput? description,
-    bool? loading,
+    bool? isValid,
+    FormzSubmissionStatus? status,
   }) {
     return CreateJobState(
       jobForm: JobForm(
@@ -30,7 +37,8 @@ class CreateJobState extends Equatable {
         phone: phone ?? jobForm.phone,
         description: description ?? jobForm.description,
       ),
-      loading: loading ?? this.loading,
+      isValid: jobForm.isValid,
+      status: status ?? this.status,
     );
   }
 }
