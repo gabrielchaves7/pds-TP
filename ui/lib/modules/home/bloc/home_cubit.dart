@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:premium_todo/bootstrap.dart';
 import 'package:premium_todo/modules/home/bloc/home_state.dart';
 import 'package:premium_todo/modules/home/home.dart';
+import 'package:premium_todo/modules/home/repository/job.dart';
 import 'package:premium_todo/modules/home/repository/jobs_repository.dart';
 
 class HomeCubit extends Cubit<HomeState> {
@@ -55,5 +56,9 @@ class HomeCubit extends Cubit<HomeState> {
         ),
       ),
     );
+  }
+
+  void updateJobsList(Job newJob) {
+    emit(state.copyWith(jobs: [...state.jobs, newJob]));
   }
 }

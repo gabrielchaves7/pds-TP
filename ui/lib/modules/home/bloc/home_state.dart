@@ -37,6 +37,7 @@ class HomeState extends Equatable {
   @override
   List<Object?> get props => [
         filterQuery,
+        jobs,
       ];
 
   HomeState copyWith({

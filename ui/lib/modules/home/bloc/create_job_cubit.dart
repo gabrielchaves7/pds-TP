@@ -40,14 +40,12 @@ class CreateJobCubit extends Cubit<CreateJobState> {
     );
   }
 
-  void createJob(Uint8List rawPath) async {
+  void createJob(
+      Uint8List rawPath, void Function(Job newJob) onJobCreated) async {
     try {
       emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
-      final storageRef = FirebaseStorage.instance.ref();
-      final jobRef = storageRef.child('${Uuid().v4()}.png');
-      await jobRef.putData(rawPath);
-      final downloadUrl = await jobRef.getDownloadURL();
-      await _jobsRepository.post(
+
+      final newJob = await _jobsRepository.post(
         Job(
           contactPhone: state.jobForm.phone.value,
           description: state.jobForm.description.value,
@@ -57,13 +55,22 @@ class CreateJobCubit extends Cubit<CreateJobState> {
           maxSalary: state.jobForm.maxSalary.value,
           minSalary: state.jobForm.minSalary.value,
           name: state.jobForm.name.value,
-          imageUrl: downloadUrl,
+          imageUrl: await createImageDownloadUrl(rawPath),
         ),
       );
       emit(state.copyWith(status: FormzSubmissionStatus.success));
+      if (newJob != null) onJobCreated(newJob);
     } catch (e) {
       print(e);
       emit(state.copyWith(status: FormzSubmissionStatus.failure));
     }
+  }
+
+  Future<String> createImageDownloadUrl(Uint8List rawPath) async {
+    final storageRef = FirebaseStorage.instance.ref();
+    final jobRef = storageRef.child('${Uuid().v4()}.png');
+    await jobRef.putData(rawPath);
+
+    return jobRef.getDownloadURL();
   }
 }

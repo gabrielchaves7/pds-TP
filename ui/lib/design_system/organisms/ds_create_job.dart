@@ -8,6 +8,7 @@ import 'package:premium_todo/design_system/design_system.dart';
 import 'package:premium_todo/design_system/organisms/ds_image_picker.dart';
 import 'package:premium_todo/modules/home/bloc/create_job_cubit.dart';
 import 'package:premium_todo/modules/home/bloc/create_job_state.dart';
+import 'package:premium_todo/modules/home/bloc/home_cubit.dart';
 
 class DsCreateJob extends StatefulWidget {
   const DsCreateJob({super.key});
@@ -23,9 +24,9 @@ class _DsCreateJobState extends State<DsCreateJob> {
   Widget build(BuildContext context) {
     return BlocListener<CreateJobCubit, CreateJobState>(
       listener: (context, state) {
-        if (state.status == FormzSubmissionStatus.inProgress)
+        if (state.status == FormzSubmissionStatus.inProgress) {
           context.loaderOverlay.show();
-        else if (state.status == FormzSubmissionStatus.success) {
+        } else if (state.status == FormzSubmissionStatus.success) {
           context.loaderOverlay.hide();
           Navigator.of(context).pop();
         } else {
@@ -96,14 +97,19 @@ class _DsCreateJobState extends State<DsCreateJob> {
                   BlocBuilder<CreateJobCubit, CreateJobState>(
                     builder: (context, state) {
                       return DsOutlinedButton(
-                        child: Text('Criar'),
                         onPressed: (state.isValid &&
                                 filePickerResult?.files.first != null)
                             ? () {
                                 context.read<CreateJobCubit>().createJob(
-                                    filePickerResult!.files.first.bytes!);
+                                    filePickerResult!.files.first.bytes!,
+                                    (newJob) {
+                                  context
+                                      .read<HomeCubit>()
+                                      .updateJobsList(newJob);
+                                });
                               }
                             : null,
+                        child: const Text('Criar'),
                       );
                     },
                   ),
