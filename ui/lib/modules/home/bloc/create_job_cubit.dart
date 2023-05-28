@@ -52,7 +52,7 @@ class CreateJobCubit extends Cubit<CreateJobState> {
           contactPhone: state.jobForm.phone.value,
           description: state.jobForm.description.value,
           email: state.jobForm.email.value,
-          experience: RequiredExperienceFilter.all,
+          experience: RequiredExperienceFilter.ALL,
           location: state.jobForm.location.value,
           maxSalary: state.jobForm.maxSalary.value,
           minSalary: state.jobForm.minSalary.value,

@@ -7,7 +7,7 @@ import 'package:premium_todo/modules/home/bloc/home_cubit.dart';
 import 'package:premium_todo/modules/home/bloc/home_state.dart';
 
 enum RequiredExperienceFilter {
-  all,
+  ALL,
   entryLevel,
   midSeniorLevel,
 }
@@ -29,7 +29,7 @@ class RequiredExperience extends StatelessWidget {
             ),
             DsRadio<RequiredExperienceFilter>(
               title: 'Qualquer experiência',
-              value: RequiredExperienceFilter.all,
+              value: RequiredExperienceFilter.ALL,
               groupValue: state.filterQuery.requiredExperienceFilter,
               onChanged: (RequiredExperienceFilter? value) => context
                   .read<HomeCubit>()

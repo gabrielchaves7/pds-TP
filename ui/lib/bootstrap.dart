@@ -7,7 +7,6 @@ import 'package:flutter/widgets.dart';
 import 'package:get_it/get_it.dart';
 import 'package:premium_todo/firebase_options.dart';
 import 'package:premium_todo/modules/app/view/app.dart';
-import 'package:premium_todo/modules/home/repository/home_repository.dart';
 import 'package:premium_todo/modules/home/repository/jobs_repository.dart';
 import 'package:premium_todo/modules/http/http_provider.dart';
 import 'package:premium_todo/modules/http/http_provider_impl.dart';
@@ -37,7 +36,6 @@ Future<void> setup() async {
   getIt
     ..registerSingleton<IHttpProvider>(HttpProvider())
     ..registerLazySingleton<SignUpRepository>(SignUpRepository.new)
-    ..registerLazySingleton<HomeRepository>(HomeRepository.new)
     ..registerLazySingleton<JobsRepository>(JobsRepository.new)
     ..registerSingleton<SharedPreferences>(prefs);
   await Firebase.initializeApp(

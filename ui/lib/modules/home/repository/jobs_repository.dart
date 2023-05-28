@@ -16,12 +16,27 @@ class JobsRepository {
   Future<Job?> post(Job job) async {
     try {
       final body = job.toJson()
-        ..addAll({'experience': 'MID_LEVEL', 'type': 'ON_SITE'});
+        ..addAll({'experience': 'ALL', 'type': 'ON_SITE'});
       final response = await http.post('/api/job', body: body);
 
       return Job.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
     } catch (e) {
       print(e);
+    }
+  }
+
+  Future<List<Job>> get() async {
+    try {
+      final response = await http.get('/api/job');
+
+      final responseBody = jsonDecode(response.body) as List<dynamic>;
+
+      return responseBody
+          .map((e) => Job.fromJson(e as Map<String, dynamic>))
+          .toList();
+    } catch (e) {
+      print(e);
+      return [];
     }
   }
 }

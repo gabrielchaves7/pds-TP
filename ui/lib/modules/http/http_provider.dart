@@ -7,4 +7,6 @@ abstract class IHttpProvider {
     String path, {
     dynamic body,
   });
+
+  Future<Response> get(String path);
 }

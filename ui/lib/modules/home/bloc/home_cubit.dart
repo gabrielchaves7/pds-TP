@@ -2,14 +2,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:premium_todo/bootstrap.dart';
 import 'package:premium_todo/modules/home/bloc/home_state.dart';
 import 'package:premium_todo/modules/home/home.dart';
-import 'package:premium_todo/modules/home/repository/home_repository.dart';
+import 'package:premium_todo/modules/home/repository/jobs_repository.dart';
 
 class HomeCubit extends Cubit<HomeState> {
-  HomeCubit({HomeRepository? homeRepository})
+  HomeCubit({JobsRepository? jobsRepository})
       : super(
           HomeState(
             filterQuery: FilterQuery(
-              requiredExperienceFilter: RequiredExperienceFilter.all,
+              requiredExperienceFilter: RequiredExperienceFilter.ALL,
               salaryRangeFilter: SalaryRangeFilter.any,
               fullTimeFilter: true,
               interimFilter: true,
@@ -20,13 +20,13 @@ class HomeCubit extends Cubit<HomeState> {
             jobs: [],
           ),
         ) {
-    _homeRepository = homeRepository ?? getIt<HomeRepository>();
+    _jobsRepository = jobsRepository ?? getIt<JobsRepository>();
   }
 
-  late HomeRepository _homeRepository;
+  late JobsRepository _jobsRepository;
 
   Future<void> listJobs() async {
-    final jobs = await _homeRepository.get();
+    final jobs = await _jobsRepository.get();
     emit(state.copyWith(jobs: jobs));
   }
 

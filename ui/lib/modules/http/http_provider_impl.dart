@@ -46,4 +46,15 @@ class HttpProvider implements IHttpProvider {
 
     return response;
   }
+
+  @override
+  Future<http.Response> get(String path) async {
+    final response = await http.get(
+      _getUri(path),
+      headers: _headers,
+    );
+    _validateResponse(response);
+
+    return response;
+  }
 }

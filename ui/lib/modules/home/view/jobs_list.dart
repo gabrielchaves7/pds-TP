@@ -40,7 +40,7 @@ class JobsLits extends StatelessWidget {
 
   List<Job> _applyRequiredExperienceFilter(
       List<Job> jobs, RequiredExperienceFilter filter) {
-    if (filter != RequiredExperienceFilter.all) {
+    if (filter != RequiredExperienceFilter.ALL) {
       jobs = jobs.where((element) => element.experience == filter).toList();
     }
 

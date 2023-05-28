@@ -34,7 +34,7 @@ Map<String, dynamic> _$JobToJson(Job instance) => <String, dynamic>{
     };
 
 const _$RequiredExperienceFilterEnumMap = {
-  RequiredExperienceFilter.all: 'all',
+  RequiredExperienceFilter.ALL: 'ALL',
   RequiredExperienceFilter.entryLevel: 'entryLevel',
   RequiredExperienceFilter.midSeniorLevel: 'midSeniorLevel',
 };
