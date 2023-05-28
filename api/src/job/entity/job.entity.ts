@@ -20,10 +20,16 @@ export class Job {
   id: number;
 
   @Column()
-	title: string;
+	name: string;
 
   @Column()
   description: string;
+
+  @Column()
+  contactPhone: string;
+
+  @Column()
+  email: string;
 
   @ManyToOne(() => User)
   @JoinColumn({ name: 'company_id'})
@@ -45,12 +51,15 @@ export class Job {
 	@Column()
 	maxSalary: number;
 
+	@Column()
+	imageUrl: string;
+	
 	@Column({
 		type: 'enum',
 		enum: ExperienceLevel,
 		default: ExperienceLevel.MID_LEVEL
 	})
-	experienceLevel: ExperienceLevel
+	experience: ExperienceLevel
 
   @Column({
     default: new Date(),

@@ -11,13 +11,16 @@ export class JobsController {
   @Post()
   async post(@Body() jobDto: JobDto): Promise<JobDto> {
     return this.jobService.create(
-      jobDto.title,
+      jobDto.name,
       jobDto.description,
+      jobDto.contactPhone,
+      jobDto.email,
       jobDto.company,
       jobDto.location,
       jobDto.type,
       jobDto.minSalary,
       jobDto.maxSalary,
-      jobDto.experienceLevel);
+      jobDto.imageUrl,
+      jobDto.experience);
   }
 }

@@ -14,13 +14,25 @@ export class JobDto {
     @ApiProperty({
         description: 'Title of the job'
     })
-    title: string
+    name: string
 
     @IsString()
     @ApiProperty({
         description: 'Descripiton of the job'
     })
     description: string;
+
+    @IsString()
+    @ApiProperty({
+        description: 'Contact Phone of the annunciator'
+    })
+    contactPhone: string;
+
+    @IsString()
+    @ApiProperty({
+        description: 'Email of the annunciator'
+    })
+    email: string;
 
     @ApiProperty({
         description: 'Company of the job'
@@ -53,13 +65,19 @@ export class JobDto {
     })
     maxSalary: number;
 
+    @IsString()
+    @ApiProperty({
+        description: 'Image adress of the job'
+    })
+    imageUrl: string;
+
     @IsEnum(ExperienceLevel)
     @ApiProperty({
     enum: ['INTERN', 'JUNIOR', 'MID_LEVEL', 'SENIOR'],
     description: 'Experience level of job',
     default: ExperienceLevel.MID_LEVEL,
   })
-    experienceLevel: ExperienceLevel;
+    experience: ExperienceLevel;
 
     @IsDate()
     @ApiProperty({

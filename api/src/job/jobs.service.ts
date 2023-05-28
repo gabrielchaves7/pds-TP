@@ -5,23 +5,36 @@ import { JobsDataSource } from './datasource/job.datasource';
 export class JobsService {
   constructor(
     @Inject(JobsDataSource) private readonly jobsDataSource: JobsDataSource,
-  ) {}
+  ) { }
 
   async findOne(id) {
     var job = await this.jobsDataSource.findOne(id);
     return job;
   }
 
-  async create(title, description, company, location, type, minSalary, maxSalary, experienceLevel) {
+  async create(name,
+    description,
+    contactPhone,
+    email,
+    company,
+    location,
+    type,
+    minSalary,
+    maxSalary,
+    imageUrl,
+    experience) {
     return this.jobsDataSource.save({
-      title,
+      name,
       description,
+      contactPhone,
+      email,
       company,
       location,
       type,
       minSalary,
       maxSalary,
-      experienceLevel
+      imageUrl,
+      experience
     });
   }
 }
