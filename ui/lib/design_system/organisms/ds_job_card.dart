@@ -28,8 +28,8 @@ class DsJobCard extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: DsSpacing.xxx),
             child: ListTile(
-              leading: Image.asset(
-                Assets.assets_icon_png,
+              leading: Image.network(
+                job.imageUrl!,
                 width: 72,
               ),
               title: Row(
