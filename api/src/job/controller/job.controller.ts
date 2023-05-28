@@ -15,12 +15,13 @@ export class JobsController {
       jobDto.description,
       jobDto.contactPhone,
       jobDto.email,
-      jobDto.company,
+      // jobDto.companyId,
       jobDto.location,
       jobDto.type,
       jobDto.minSalary,
       jobDto.maxSalary,
       jobDto.imageUrl,
-      jobDto.experience);
+      jobDto.experience,
+    );
   }
 }

@@ -11,29 +11,31 @@ export class JobsDataSource {
     private readonly jobRepository: Repository<Job>,
   ) {}
 
-  async save({ name,
+  async save({
+    name,
     description,
     contactPhone,
     email,
-    company,
+    // companyId,
     location,
     type,
     minSalary,
     maxSalary,
     imageUrl,
-    experience }): Promise<Job> {
+    experience,
+  }): Promise<Job> {
     const newJob = this.jobRepository.create({
       name,
-    description,
-    contactPhone,
-    email,
-    company,
-    location,
-    type,
-    minSalary,
-    maxSalary,
-    imageUrl,
-    experience
+      description,
+      contactPhone,
+      email,
+      // company,
+      location,
+      type,
+      minSalary,
+      maxSalary,
+      imageUrl,
+      experience,
     });
     return await this.jobRepository.save(newJob);
   }

@@ -1,93 +1,83 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Job, JobType, ExperienceLevel } from '../job/entity/job.entity';
-import { IsBoolean, IsDate, IsEnum, IsNumber, IsString, IsTaxId, isNumber } from 'class-validator';
+import {
+  IsBoolean,
+  IsDate,
+  IsEnum,
+  IsNumber,
+  IsString,
+  IsTaxId,
+  isNumber,
+} from 'class-validator';
 import { User } from 'src/users/entity/user.entity';
 
 export class JobDto {
-    // @IsNumber()
-    // @ApiProperty({
-    //     description: 'The number of the job'
-    // })
-    // id: number;
+  @IsString()
+  @ApiProperty({
+    description: 'Title of the job',
+  })
+  name: string;
 
-    @IsString()
-    @ApiProperty({
-        description: 'Title of the job'
-    })
-    name: string
+  @IsString()
+  @ApiProperty({
+    description: 'Descripiton of the job',
+  })
+  description: string;
 
-    @IsString()
-    @ApiProperty({
-        description: 'Descripiton of the job'
-    })
-    description: string;
+  @IsString()
+  @ApiProperty({
+    description: 'Contact Phone of the annunciator',
+  })
+  contactPhone: string;
 
-    @IsString()
-    @ApiProperty({
-        description: 'Contact Phone of the annunciator'
-    })
-    contactPhone: string;
+  @IsString()
+  @ApiProperty({
+    description: 'Email of the annunciator',
+  })
+  email: string;
 
-    @IsString()
-    @ApiProperty({
-        description: 'Email of the annunciator'
-    })
-    email: string;
+  //   @ApiProperty({
+  //     description: 'Company id',
+  //   })
+  //   companyId: number;
 
-    @ApiProperty({
-        description: 'Company of the job'
-    })
-    company: User;
+  @IsString()
+  @ApiProperty({
+    description: 'Location of the job',
+  })
+  location: string;
 
-    @IsString()
-    @ApiProperty({
-        description: 'Location of the job'
-    })  
-    location: string;
-
-    @IsEnum(JobType)
-    @ApiProperty({
+  @IsEnum(JobType)
+  @ApiProperty({
     enum: ['ON_SITE', 'HYBRID', 'REMOTE'],
     description: 'The type of job',
     default: JobType.ON_SITE,
   })
-    type: JobType;
+  type: JobType;
 
-    @IsNumber()
-    @ApiProperty({
-        description: 'Min salary of the job'
-    })
-    minSalary: number;
+  @IsNumber()
+  @ApiProperty({
+    description: 'Min salary of the job',
+  })
+  minSalary: number;
 
-    @IsNumber()
-    @ApiProperty({
-        description: 'Max salary of the job'
-    })
-    maxSalary: number;
+  @IsNumber()
+  @ApiProperty({
+    description: 'Max salary of the job',
+  })
+  maxSalary: number;
 
-    @IsString()
-    @ApiProperty({
-        description: 'Image adress of the job'
-    })
-    imageUrl: string;
+  @IsString()
+  @ApiProperty({
+    description: 'Image adress of the job',
+  })
+  imageUrl: string;
 
-    @IsEnum(ExperienceLevel)
-    @ApiProperty({
+  @IsEnum(ExperienceLevel)
+  @ApiProperty({
     enum: ['INTERN', 'JUNIOR', 'MID_LEVEL', 'SENIOR'],
     description: 'Experience level of job',
     default: ExperienceLevel.MID_LEVEL,
   })
-    experience: ExperienceLevel;
-
-    @IsDate()
-    @ApiProperty({
-        description: 'Date of creation of the job'
-    })
-    date: Date;
-
-    @IsBoolean()
-    @ApiProperty({
-        description: 'Set if the job is opened'
-    })
-    opened: boolean;
+  experience: ExperienceLevel;
 }
