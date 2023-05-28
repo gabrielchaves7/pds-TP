@@ -26,8 +26,8 @@ class HomeCubit extends Cubit<HomeState> {
 
   late JobsRepository _jobsRepository;
 
-  Future<void> listJobs() async {
-    final jobs = await _jobsRepository.get();
+  Future<void> listJobs(int userId) async {
+    final jobs = await _jobsRepository.get(userId);
     emit(state.copyWith(jobs: jobs));
   }
 

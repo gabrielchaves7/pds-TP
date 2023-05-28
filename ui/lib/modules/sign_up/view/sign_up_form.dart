@@ -115,12 +115,10 @@ class _RoleDropdown extends StatelessWidget {
               child: DropdownButton<String>(
                 value: state.role.value,
                 isExpanded: true,
-                icon: const Icon(Icons.arrow_downward),
-                elevation: 16,
-                style: const TextStyle(color: Colors.deepPurple),
+                style: const TextStyle(color: DsColors.brandColorPrimary),
                 underline: Container(
                   height: 2,
-                  color: Colors.deepPurpleAccent,
+                  color: DsColors.brandColorPrimary,
                 ),
                 onChanged: (String? value) {
                   context.read<SignUpCubit>().roleChanged(value ?? '');

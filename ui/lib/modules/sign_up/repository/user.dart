@@ -23,6 +23,8 @@ class NUser {
   /// Convenience getter to determine whether the current user is not empty.
   bool get isNotEmpty => this != NUser.empty;
 
+  bool get isCompany => role == UserRole.COMPANY;
+
   factory NUser.fromJson(Map<String, dynamic> json) => _$NUserFromJson(json);
 
   /// Connect the generated [_$NUserToJson] function to the `toJson` method.

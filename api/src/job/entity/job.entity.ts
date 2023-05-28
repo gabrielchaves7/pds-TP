@@ -36,9 +36,8 @@ export class Job {
   @Column()
   email: string;
 
-  @ManyToOne(() => User)
-  @JoinColumn({ name: 'company_id' })
-  company: User;
+  @Column()
+  companyId: number;
 
   @Column()
   location: string;

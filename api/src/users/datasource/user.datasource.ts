@@ -23,4 +23,8 @@ export class UsersDataSource {
   async findOne(username: string): Promise<User> {
     return this.userRepository.findOneBy({ username });
   }
+
+  async findById(id: number): Promise<User> {
+    return this.userRepository.findOneBy({ id });
+  }
 }

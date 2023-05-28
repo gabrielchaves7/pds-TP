@@ -26,6 +26,7 @@ class CreateJobCubit extends Cubit<CreateJobState> {
     JobMaxSalary? maxSalary,
     DefaultJobInput? phone,
     DefaultJobInput? description,
+    DefaultJobInput? experience,
   }) {
     emit(
       state.copyWith(
@@ -36,6 +37,7 @@ class CreateJobCubit extends Cubit<CreateJobState> {
         maxSalary: maxSalary,
         phone: phone,
         description: description,
+        experience: experience,
       ),
     );
   }

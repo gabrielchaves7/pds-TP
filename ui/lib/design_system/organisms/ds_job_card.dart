@@ -39,13 +39,13 @@ class DsJobCard extends StatelessWidget {
                     job.companyName ?? 'Nome indisponível',
                     style: const TextStyle(fontSize: 18),
                   ),
-                  SizedBox(
-                    width: 150,
-                    child: DsOutlinedButton(
-                      child: const Text('Candidatou-se'),
-                      onPressed: () {},
-                    ),
-                  )
+                  // SizedBox(
+                  //   width: 150,
+                  //   child: DsOutlinedButton(
+                  //     child: const Text('Candidatou-se'),
+                  //     onPressed: () {},
+                  //   ),
+                  // )
                 ],
               ),
               subtitle: Container(

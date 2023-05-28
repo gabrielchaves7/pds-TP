@@ -1,10 +1,13 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { JobsDataSource } from './datasource/job.datasource';
+import { UsersDataSource } from 'src/users/datasource/user.datasource';
+import { UserRole } from 'src/users/entity/user.entity';
 
 @Injectable()
 export class JobsService {
   constructor(
     @Inject(JobsDataSource) private readonly jobsDataSource: JobsDataSource,
+    @Inject(UsersDataSource) private readonly usersDataSource: UsersDataSource,
   ) {}
 
   async findOne(id) {
@@ -12,8 +15,15 @@ export class JobsService {
     return job;
   }
 
-  async get() {
-    var jobs = await this.jobsDataSource.get();
+  async get(userId: number) {
+    var user = await this.usersDataSource.findById(userId);
+    var jobs;
+    if (user.role == UserRole.COMPANY) {
+      jobs = await this.jobsDataSource.getCompanyJobs(userId);
+    } else {
+      jobs = await this.jobsDataSource.get();
+    }
+
     return jobs;
   }
 

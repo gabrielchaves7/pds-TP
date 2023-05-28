@@ -27,13 +27,12 @@ export class JobsDataSource {
     imageUrl,
     experience,
   }): Promise<Job> {
-    const company = await this.userRepository.findOneBy({ id: companyId });
     const newJob = this.jobRepository.create({
       name,
       description,
       contactPhone,
       email,
-      company,
+      companyId,
       location,
       type,
       minSalary,
@@ -52,6 +51,14 @@ export class JobsDataSource {
     return this.jobRepository.find({
       order: {
         date: 'DESC',
+      },
+    });
+  }
+
+  async getCompanyJobs(id: number): Promise<Job[]> {
+    return this.jobRepository.find({
+      where: {
+        companyId: id,
       },
     });
   }

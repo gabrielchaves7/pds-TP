@@ -23,99 +23,107 @@ class _DsCreateJobState extends State<DsCreateJob> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<CreateJobCubit, CreateJobState>(
-      listener: (context, state) {
-        if (state.status == FormzSubmissionStatus.inProgress) {
-          context.loaderOverlay.show();
-        } else if (state.status == FormzSubmissionStatus.success) {
-          context.loaderOverlay.hide();
-          Navigator.of(context).pop();
-        } else {
-          context.loaderOverlay.hide();
-        }
-      },
-      child: Padding(
-        padding: const EdgeInsets.all(DsSpacing.xxxxs),
-        child: Container(
-          constraints: const BoxConstraints(
-            maxWidth: 548,
-          ),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: LoaderOverlay(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  RichText(
-                    text: const TextSpan(
-                      style: TextStyle(
-                        fontFamily: 'WorkSans',
-                        fontWeight: FontWeight.w400,
-                        fontSize: 44,
-                        color: Colors.black,
-                      ),
-                      text: 'Crie sua ',
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: 'vaga',
-                          style: TextStyle(
-                            fontFamily: 'Rubik',
-                            fontWeight: FontWeight.w600,
-                            fontSize: 44,
-                            color: DsColors.brandColorPrimary,
-                          ),
+    return BlocProvider<CreateJobCubit>(
+      create: (_) => CreateJobCubit(),
+      child: BlocListener<CreateJobCubit, CreateJobState>(
+        listener: (context, state) {
+          if (state.status == FormzSubmissionStatus.inProgress) {
+            context.loaderOverlay.show();
+          } else if (state.status == FormzSubmissionStatus.success) {
+            context.loaderOverlay.hide();
+            Navigator.of(context).pop();
+          } else {
+            context.loaderOverlay.hide();
+          }
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(DsSpacing.xxxxs),
+          child: Container(
+            constraints: const BoxConstraints(
+              maxWidth: 548,
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: LoaderOverlay(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    RichText(
+                      text: const TextSpan(
+                        style: TextStyle(
+                          fontFamily: 'WorkSans',
+                          fontWeight: FontWeight.w400,
+                          fontSize: 44,
+                          color: Colors.black,
                         ),
-                      ],
+                        text: 'Crie sua ',
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: 'vaga',
+                            style: TextStyle(
+                              fontFamily: 'Rubik',
+                              fontWeight: FontWeight.w600,
+                              fontSize: 44,
+                              color: DsColors.brandColorPrimary,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  _NameInput(),
-                  _LocationInput(),
-                  _MinSalaryInput(),
-                  _MaxSalaryInput(),
-                  _PhoneInput(),
-                  _EmailInput(),
-                  _DescriptionInput(),
-                  const SizedBox(
-                    height: 32,
-                  ),
-                  DsImagePicker(
-                    filePickerResult: filePickerResult,
-                    onDeleteSelectedFile: () {
-                      setState(() {
-                        filePickerResult = null;
-                      });
-                    },
-                    onFilePick: (FilePickerResult? file) {
-                      setState(() {
-                        filePickerResult = file;
-                      });
-                    },
-                  ),
-                  const SizedBox(
-                    height: 32,
-                  ),
-                  BlocBuilder<CreateJobCubit, CreateJobState>(
-                    builder: (context, state) {
-                      final createJobCubit = context.read<CreateJobCubit>();
-                      final homeCubit = context.read<HomeCubit>();
-                      final appBloc = context.read<AppBloc>();
-                      return DsOutlinedButton(
-                        onPressed: (state.isValid &&
-                                filePickerResult?.files.first != null)
-                            ? () {
-                                createJobCubit.createJob(
-                                  rawPath: filePickerResult!.files.first.bytes!,
-                                  onJobCreated: homeCubit.updateJobsList,
-                                  companyId: appBloc.state.user.id,
-                                );
-                              }
-                            : null,
-                        child: const Text('Criar'),
-                      );
-                    },
-                  ),
-                ],
+                    _NameInput(),
+                    _LocationInput(),
+                    _MinSalaryInput(),
+                    _MaxSalaryInput(),
+                    _PhoneInput(),
+                    _EmailInput(),
+                    _DescriptionInput(),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    _ExperienceInput(),
+                    const SizedBox(
+                      height: 32,
+                    ),
+                    DsImagePicker(
+                      filePickerResult: filePickerResult,
+                      onDeleteSelectedFile: () {
+                        setState(() {
+                          filePickerResult = null;
+                        });
+                      },
+                      onFilePick: (FilePickerResult? file) {
+                        setState(() {
+                          filePickerResult = file;
+                        });
+                      },
+                    ),
+                    const SizedBox(
+                      height: 32,
+                    ),
+                    BlocBuilder<CreateJobCubit, CreateJobState>(
+                      builder: (context, state) {
+                        final createJobCubit = context.read<CreateJobCubit>();
+                        final homeCubit = context.read<HomeCubit>();
+                        final appBloc = context.read<AppBloc>();
+                        return DsOutlinedButton(
+                          onPressed: (state.isValid &&
+                                  filePickerResult?.files.first != null)
+                              ? () {
+                                  createJobCubit.createJob(
+                                    rawPath:
+                                        filePickerResult!.files.first.bytes!,
+                                    onJobCreated: homeCubit.updateJobsList,
+                                    companyId: appBloc.state.user.id,
+                                  );
+                                }
+                              : null,
+                          child: const Text('Criar'),
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -273,6 +281,43 @@ class _DescriptionInput extends StatelessWidget {
           errorText: state.jobForm.description.displayError != null
               ? 'invalid description'
               : null,
+        );
+      },
+    );
+  }
+}
+
+class _ExperienceInput extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<CreateJobCubit, CreateJobState>(
+      buildWhen: (previous, current) =>
+          previous.jobForm.experience != current.jobForm.experience,
+      builder: (context, state) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Experiência'),
+            DropdownButton<String>(
+              value: state.jobForm.experience.value,
+              isExpanded: true,
+              style: const TextStyle(color: DsColors.brandColorPrimary),
+              underline: Container(
+                height: 2,
+                color: DsColors.brandColorPrimary,
+              ),
+              onChanged: (value) => context.read<CreateJobCubit>().updateForm(
+                    experience: DefaultJobInput.dirty(value!),
+                  ),
+              items: ['ALL', 'entryLevel', 'midSeniorLevel']
+                  .map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+            ),
+          ],
         );
       },
     );

@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Post, Put, UseFilters } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+  Put,
+  UseFilters,
+} from '@nestjs/common';
 import { JobDto } from '../job.dto';
 import { JobsService } from '../jobs.service';
 import { HttpExceptionFilter } from '../../http-exception.filter';
@@ -9,10 +18,10 @@ import { Job } from '../entity/job.entity';
 export class JobsController {
   constructor(private jobService: JobsService) {}
 
-  @Get('')
+  @Get('/:userId')
   @UseFilters(new HttpExceptionFilter())
-  async get(): Promise<Job[]> {
-    return this.jobService.get();
+  async get(@Param('userId', new ParseIntPipe()) companyId): Promise<Job[]> {
+    return this.jobService.get(companyId);
   }
 
   @Post()

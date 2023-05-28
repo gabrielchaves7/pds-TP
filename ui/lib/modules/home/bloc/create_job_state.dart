@@ -24,6 +24,7 @@ class CreateJobState extends Equatable {
     JobMaxSalary? maxSalary,
     DefaultJobInput? phone,
     DefaultJobInput? description,
+    DefaultJobInput? experience,
     bool? isValid,
     FormzSubmissionStatus? status,
   }) {
@@ -36,6 +37,7 @@ class CreateJobState extends Equatable {
         maxSalary: maxSalary ?? jobForm.maxSalary,
         phone: phone ?? jobForm.phone,
         description: description ?? jobForm.description,
+        experience: experience ?? jobForm.experience,
       ),
       isValid: jobForm.isValid,
       status: status ?? this.status,

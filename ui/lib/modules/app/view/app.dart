@@ -23,9 +23,6 @@ class App extends StatelessWidget {
         BlocProvider<HomeCubit>(
           create: (_) => HomeCubit(),
         ),
-        BlocProvider<CreateJobCubit>(
-          create: (_) => CreateJobCubit(),
-        ),
       ],
       child: const AppView(),
     );

@@ -25,7 +25,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   void initState() {
-    context.read<HomeCubit>().listJobs();
+    final user = context.read<AppBloc>().state.user;
+    context.read<HomeCubit>().listJobs(user.id);
+
     super.initState();
   }
 

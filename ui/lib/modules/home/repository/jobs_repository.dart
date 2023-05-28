@@ -25,9 +25,9 @@ class JobsRepository {
     }
   }
 
-  Future<List<Job>> get() async {
+  Future<List<Job>> get(int userId) async {
     try {
-      final response = await http.get('/api/job');
+      final response = await http.get('/api/job/$userId');
 
       final responseBody = jsonDecode(response.body) as List<dynamic>;
 

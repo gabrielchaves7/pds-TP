@@ -9,7 +9,7 @@ enum JobMaxSalaryValidationError { invalid }
 
 class DefaultJobInput
     extends FormzInput<String, DefaultJobInputValidationError> {
-  const DefaultJobInput.pure() : super.pure('');
+  const DefaultJobInput.pure() : super.pure('ALL');
   const DefaultJobInput.dirty([super.value = '']) : super.dirty();
 
   @override
@@ -59,6 +59,7 @@ class JobForm with FormzMixin {
     this.maxSalary = const JobMaxSalary.pure(),
     this.phone = const DefaultJobInput.pure(),
     this.description = const DefaultJobInput.pure(),
+    this.experience = const DefaultJobInput.pure(),
   });
 
   final Email email;
@@ -68,6 +69,7 @@ class JobForm with FormzMixin {
   final JobMaxSalary maxSalary;
   final DefaultJobInput phone;
   final DefaultJobInput description;
+  final DefaultJobInput experience;
 
   @override
   List<FormzInput> get inputs => [
@@ -78,5 +80,6 @@ class JobForm with FormzMixin {
         maxSalary,
         phone,
         description,
+        experience
       ];
 }
