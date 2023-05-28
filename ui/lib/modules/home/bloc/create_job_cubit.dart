@@ -1,18 +1,21 @@
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:premium_todo/bootstrap.dart';
 import 'package:premium_todo/modules/home/bloc/create_job_state.dart';
-import 'package:premium_todo/modules/home/bloc/home_state.dart';
 import 'package:premium_todo/modules/home/home.dart';
-import 'package:premium_todo/modules/home/repository/home_repository.dart';
+import 'package:premium_todo/modules/home/repository/job.dart';
+import 'package:premium_todo/modules/home/repository/jobs_repository.dart';
+import 'package:uuid/uuid.dart';
 
 class CreateJobCubit extends Cubit<CreateJobState> {
-  CreateJobCubit({HomeRepository? homeRepository})
+  CreateJobCubit({JobsRepository? jobRsepository})
       : super(const CreateJobState()) {
-    _homeRepository = homeRepository ?? getIt<HomeRepository>();
+    _jobsRepository = jobRsepository ?? getIt<JobsRepository>();
   }
 
-  late HomeRepository _homeRepository;
+  late JobsRepository _jobsRepository;
 
   void updateForm({
     Email? email,
@@ -34,5 +37,30 @@ class CreateJobCubit extends Cubit<CreateJobState> {
         description: description,
       ),
     );
+  }
+
+  void createJob(Uint8List rawPath) async {
+    try {
+      emit(state.copyWith(loading: true));
+      final storageRef = FirebaseStorage.instance.ref();
+      final jobRef = storageRef.child(const Uuid().toString());
+      await jobRef.putData(rawPath);
+      final downloadUrl = await jobRef.getDownloadURL();
+      await _jobsRepository.post(
+        Job(
+          contactPhone: state.jobForm.phone.value,
+          description: state.jobForm.description.value,
+          email: state.jobForm.email.value,
+          experience: RequiredExperienceFilter.all,
+          location: state.jobForm.location.value,
+          maxSalary: state.jobForm.maxSalary.value,
+          minSalary: state.jobForm.minSalary.value,
+          name: state.jobForm.name.value,
+          imageUrl: downloadUrl,
+        ),
+      );
+    } catch (e) {
+      print(e);
+    }
   }
 }

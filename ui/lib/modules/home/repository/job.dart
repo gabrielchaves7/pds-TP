@@ -15,6 +15,7 @@ class Job {
     required this.description,
     this.companyName,
     required this.experience,
+    this.imageUrl,
   });
 
   final String name;
@@ -25,6 +26,7 @@ class Job {
   final String contactPhone;
   final String email;
   final String description;
+  final String? imageUrl;
   final RequiredExperienceFilter experience;
 
   factory Job.fromJson(Map<String, dynamic> json) => _$JobFromJson(json);

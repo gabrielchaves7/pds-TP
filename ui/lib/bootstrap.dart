@@ -8,6 +8,7 @@ import 'package:get_it/get_it.dart';
 import 'package:premium_todo/firebase_options.dart';
 import 'package:premium_todo/modules/app/view/app.dart';
 import 'package:premium_todo/modules/home/repository/home_repository.dart';
+import 'package:premium_todo/modules/home/repository/jobs_repository.dart';
 import 'package:premium_todo/modules/http/http_provider.dart';
 import 'package:premium_todo/modules/http/http_provider_impl.dart';
 import 'package:premium_todo/modules/sign_up/repository/signup_repository.dart';
@@ -37,6 +38,7 @@ Future<void> setup() async {
     ..registerSingleton<IHttpProvider>(HttpProvider())
     ..registerLazySingleton<SignUpRepository>(SignUpRepository.new)
     ..registerLazySingleton<HomeRepository>(HomeRepository.new)
+    ..registerLazySingleton<JobsRepository>(JobsRepository.new)
     ..registerSingleton<SharedPreferences>(prefs);
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

@@ -2,9 +2,10 @@ import 'package:equatable/equatable.dart';
 import 'package:form_inputs/form_inputs.dart';
 
 class CreateJobState extends Equatable {
-  const CreateJobState({this.jobForm = const JobForm()});
+  const CreateJobState({this.jobForm = const JobForm(), this.loading = false});
 
   final JobForm jobForm;
+  final bool loading;
 
   @override
   List<Object?> get props => [jobForm];
@@ -17,6 +18,7 @@ class CreateJobState extends Equatable {
     JobMaxSalary? maxSalary,
     DefaultJobInput? phone,
     DefaultJobInput? description,
+    bool? loading,
   }) {
     return CreateJobState(
       jobForm: JobForm(
@@ -28,6 +30,7 @@ class CreateJobState extends Equatable {
         phone: phone ?? jobForm.phone,
         description: description ?? jobForm.description,
       ),
+      loading: loading ?? this.loading,
     );
   }
 }

@@ -52,7 +52,7 @@ class _DsFilePickerState extends State<DsFilePicker> {
                           width: 72,
                         ),
                         const Text(
-                          'Faça upload do seu arquivo',
+                          'Faça upload do seu currículo',
                           style: TextStyle(fontSize: 48),
                           textAlign: TextAlign.center,
                         ),

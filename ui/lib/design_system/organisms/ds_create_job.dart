@@ -3,8 +3,10 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:premium_todo/assets.dart';
 import 'package:premium_todo/design_system/design_system.dart';
+import 'package:premium_todo/design_system/organisms/ds_image_picker.dart';
 import 'package:premium_todo/modules/home/bloc/create_job_cubit.dart';
 import 'package:premium_todo/modules/home/bloc/create_job_state.dart';
 
@@ -16,50 +18,90 @@ class DsCreateJob extends StatefulWidget {
 }
 
 class _DsCreateJobState extends State<DsCreateJob> {
+  FilePickerResult? filePickerResult;
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(DsSpacing.xxxxs),
-      child: Container(
-        constraints: const BoxConstraints(
-          maxWidth: 600,
-        ),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              RichText(
-                text: const TextSpan(
-                  style: TextStyle(
-                    fontFamily: 'WorkSans',
-                    fontWeight: FontWeight.w400,
-                    fontSize: 44,
-                    color: Colors.black,
-                  ),
-                  text: 'Crie sua ',
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: 'vaga',
+    return BlocListener<CreateJobCubit, CreateJobState>(
+      listener: (context, state) {
+        if (state.loading)
+          context.loaderOverlay.show();
+        else if (!state.loading) {
+          context.loaderOverlay.hide();
+        }
+      },
+      child: LoaderOverlay(
+        child: Padding(
+          padding: const EdgeInsets.all(DsSpacing.xxxxs),
+          child: Container(
+            constraints: const BoxConstraints(
+              maxWidth: 548,
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  RichText(
+                    text: const TextSpan(
                       style: TextStyle(
-                        fontFamily: 'Rubik',
-                        fontWeight: FontWeight.w600,
+                        fontFamily: 'WorkSans',
+                        fontWeight: FontWeight.w400,
                         fontSize: 44,
-                        color: DsColors.brandColorPrimary,
+                        color: Colors.black,
                       ),
+                      text: 'Crie sua ',
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: 'vaga',
+                          style: TextStyle(
+                            fontFamily: 'Rubik',
+                            fontWeight: FontWeight.w600,
+                            fontSize: 44,
+                            color: DsColors.brandColorPrimary,
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                  _NameInput(),
+                  _LocationInput(),
+                  _MinSalaryInput(),
+                  _MaxSalaryInput(),
+                  _PhoneInput(),
+                  _EmailInput(),
+                  _DescriptionInput(),
+                  const SizedBox(
+                    height: 32,
+                  ),
+                  DsImagePicker(
+                    filePickerResult: filePickerResult,
+                    onDeleteSelectedFile: () {
+                      setState(() {
+                        filePickerResult = null;
+                      });
+                    },
+                    onFilePick: (FilePickerResult? file) {
+                      setState(() {
+                        filePickerResult = file;
+                      });
+                    },
+                  ),
+                  const SizedBox(
+                    height: 32,
+                  ),
+                  DsOutlinedButton(
+                    child: Text('Criar'),
+                    onPressed: () {
+                      context
+                          .read<CreateJobCubit>()
+                          .createJob(filePickerResult!.files.first.bytes!);
+                    },
+                  ),
+                ],
               ),
-              _NameInput(),
-              _LocationInput(),
-              _MinSalaryInput(),
-              _MaxSalaryInput(),
-              _PhoneInput(),
-              _EmailInput(),
-              _DescriptionInput(),
-            ],
+            ),
           ),
         ),
       ),
