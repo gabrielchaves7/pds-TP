@@ -39,6 +39,9 @@ export class JobsService {
     maxSalary,
     imageUrl,
     experience,
+    allowFullTime,
+    allowInterim,
+    allowPartTime,
   ) {
     return this.jobsDataSource.save({
       name,
@@ -52,6 +55,9 @@ export class JobsService {
       maxSalary,
       imageUrl,
       experience,
+      allowFullTime,
+      allowInterim,
+      allowPartTime,
     });
   }
 }

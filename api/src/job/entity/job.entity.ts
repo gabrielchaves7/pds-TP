@@ -74,4 +74,19 @@ export class Job {
     default: true,
   })
   opened: boolean;
+
+  @Column({
+    default: true,
+  })
+  allowFullTime: boolean;
+
+  @Column({
+    default: true,
+  })
+  allowInterim: boolean;
+
+  @Column({
+    default: true,
+  })
+  allowPartTime: boolean;
 }

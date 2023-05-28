@@ -26,6 +26,9 @@ export class JobsDataSource {
     maxSalary,
     imageUrl,
     experience,
+    allowFullTime,
+    allowInterim,
+    allowPartTime,
   }): Promise<Job> {
     const newJob = this.jobRepository.create({
       name,
@@ -39,6 +42,9 @@ export class JobsDataSource {
       maxSalary,
       imageUrl,
       experience,
+      allowFullTime,
+      allowInterim,
+      allowPartTime,
     });
     return await this.jobRepository.save(newJob);
   }

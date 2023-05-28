@@ -38,6 +38,9 @@ export class JobsController {
       jobDto.maxSalary,
       jobDto.imageUrl,
       jobDto.experience,
+      jobDto.allowFullTime,
+      jobDto.allowInterim,
+      jobDto.allowPartTime,
     );
   }
 }

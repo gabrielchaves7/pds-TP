@@ -60,6 +60,9 @@ class JobForm with FormzMixin {
     this.phone = const DefaultJobInput.pure(),
     this.description = const DefaultJobInput.pure(),
     this.experience = const DefaultJobInput.pure(),
+    this.allowInterim = true,
+    this.allowFullTime = true,
+    this.allowPartTime = true,
   });
 
   final Email email;
@@ -70,6 +73,9 @@ class JobForm with FormzMixin {
   final DefaultJobInput phone;
   final DefaultJobInput description;
   final DefaultJobInput experience;
+  final bool allowInterim;
+  final bool allowFullTime;
+  final bool allowPartTime;
 
   @override
   List<FormzInput> get inputs => [
@@ -80,6 +86,6 @@ class JobForm with FormzMixin {
         maxSalary,
         phone,
         description,
-        experience
+        experience,
       ];
 }

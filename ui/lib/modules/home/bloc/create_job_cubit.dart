@@ -27,6 +27,9 @@ class CreateJobCubit extends Cubit<CreateJobState> {
     DefaultJobInput? phone,
     DefaultJobInput? description,
     DefaultJobInput? experience,
+    bool? allowFullTime,
+    bool? allowInterim,
+    bool? allowPartTime,
   }) {
     emit(
       state.copyWith(
@@ -38,6 +41,9 @@ class CreateJobCubit extends Cubit<CreateJobState> {
         phone: phone,
         description: description,
         experience: experience,
+        allowFullTime: allowFullTime,
+        allowInterim: allowInterim,
+        allowPartTime: allowPartTime,
       ),
     );
   }
@@ -54,13 +60,17 @@ class CreateJobCubit extends Cubit<CreateJobState> {
           contactPhone: state.jobForm.phone.value,
           description: state.jobForm.description.value,
           email: state.jobForm.email.value,
-          experience: RequiredExperienceFilter.ALL,
+          experience: RequiredExperienceFilter.values
+              .byName(state.jobForm.experience.value),
           location: state.jobForm.location.value,
           maxSalary: state.jobForm.maxSalary.value,
           minSalary: state.jobForm.minSalary.value,
           name: state.jobForm.name.value,
           companyId: companyId,
           imageUrl: await createImageDownloadUrl(rawPath),
+          allowFullTime: state.jobForm.allowFullTime,
+          allowInterim: state.jobForm.allowInterim,
+          allowPartTime: state.jobForm.allowPartTime,
         ),
       );
       emit(state.copyWith(status: FormzSubmissionStatus.success));

@@ -18,6 +18,9 @@ class Job {
     required this.experience,
     this.imageUrl,
     this.date,
+    required this.allowFullTime,
+    required this.allowPartTime,
+    required this.allowInterim,
   });
 
   final String name;
@@ -32,6 +35,9 @@ class Job {
   final String? imageUrl;
   final RequiredExperienceFilter experience;
   final DateTime? date;
+  final bool allowFullTime;
+  final bool allowPartTime;
+  final bool allowInterim;
 
   factory Job.fromJson(Map<String, dynamic> json) => _$JobFromJson(json);
 

@@ -15,8 +15,7 @@ class JobsRepository {
 
   Future<Job?> post(Job job) async {
     try {
-      final body = job.toJson()
-        ..addAll({'experience': 'ALL', 'type': 'ON_SITE'});
+      final body = job.toJson()..addAll({'type': 'ON_SITE'});
       final response = await http.post('/api/job', body: body);
 
       return Job.fromJson(jsonDecode(response.body) as Map<String, dynamic>);

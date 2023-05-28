@@ -21,6 +21,9 @@ Job _$JobFromJson(Map<String, dynamic> json) => Job(
       imageUrl: json['imageUrl'] as String?,
       date:
           json['date'] == null ? null : DateTime.parse(json['date'] as String),
+      allowFullTime: json['allowFullTime'] as bool,
+      allowPartTime: json['allowPartTime'] as bool,
+      allowInterim: json['allowInterim'] as bool,
     );
 
 Map<String, dynamic> _$JobToJson(Job instance) => <String, dynamic>{
@@ -36,6 +39,9 @@ Map<String, dynamic> _$JobToJson(Job instance) => <String, dynamic>{
       'imageUrl': instance.imageUrl,
       'experience': _$RequiredExperienceFilterEnumMap[instance.experience]!,
       'date': instance.date?.toIso8601String(),
+      'allowFullTime': instance.allowFullTime,
+      'allowPartTime': instance.allowPartTime,
+      'allowInterim': instance.allowInterim,
     };
 
 const _$RequiredExperienceFilterEnumMap = {

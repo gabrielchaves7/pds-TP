@@ -27,6 +27,9 @@ class CreateJobState extends Equatable {
     DefaultJobInput? experience,
     bool? isValid,
     FormzSubmissionStatus? status,
+    bool? allowFullTime,
+    bool? allowInterim,
+    bool? allowPartTime,
   }) {
     return CreateJobState(
       jobForm: JobForm(
@@ -38,6 +41,9 @@ class CreateJobState extends Equatable {
         phone: phone ?? jobForm.phone,
         description: description ?? jobForm.description,
         experience: experience ?? jobForm.experience,
+        allowFullTime: allowFullTime ?? jobForm.allowFullTime,
+        allowInterim: allowInterim ?? jobForm.allowInterim,
+        allowPartTime: allowPartTime ?? jobForm.allowPartTime,
       ),
       isValid: jobForm.isValid,
       status: status ?? this.status,

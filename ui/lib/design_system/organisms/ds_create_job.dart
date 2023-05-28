@@ -78,13 +78,11 @@ class _DsCreateJobState extends State<DsCreateJob> {
                     _PhoneInput(),
                     _EmailInput(),
                     _DescriptionInput(),
-                    SizedBox(
-                      height: 8,
-                    ),
+                    const SizedBox(height: 8),
+                    _WorkloadInput(),
+                    const SizedBox(height: 8),
                     _ExperienceInput(),
-                    const SizedBox(
-                      height: 32,
-                    ),
+                    const SizedBox(height: 32),
                     DsImagePicker(
                       filePickerResult: filePickerResult,
                       onDeleteSelectedFile: () {
@@ -316,6 +314,57 @@ class _ExperienceInput extends StatelessWidget {
                   child: Text(value),
                 );
               }).toList(),
+            ),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class _WorkloadInput extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<CreateJobCubit, CreateJobState>(
+      builder: (context, state) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("Carga Horária"),
+            SizedBox(
+              width: 548,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Expanded(
+                    child: DsCheckboxTile(
+                      title: 'Full-time',
+                      value: state.jobForm.allowFullTime,
+                      onChanged: (bool? value) => context
+                          .read<CreateJobCubit>()
+                          .updateForm(allowFullTime: value),
+                    ),
+                  ),
+                  Expanded(
+                    child: DsCheckboxTile(
+                      title: 'Temporário',
+                      value: state.jobForm.allowInterim,
+                      onChanged: (bool? value) => context
+                          .read<CreateJobCubit>()
+                          .updateForm(allowInterim: value),
+                    ),
+                  ),
+                  Expanded(
+                    child: DsCheckboxTile(
+                      title: 'Meio período',
+                      value: state.jobForm.allowPartTime,
+                      onChanged: (bool? value) => context
+                          .read<CreateJobCubit>()
+                          .updateForm(allowPartTime: value),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         );

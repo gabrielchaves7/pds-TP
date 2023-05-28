@@ -80,4 +80,22 @@ export class JobDto {
     default: ExperienceLevel.ALL,
   })
   experience: ExperienceLevel;
+
+  @IsBoolean()
+  @ApiProperty({
+    description: 'Accept full time',
+  })
+  allowFullTime: boolean;
+
+  @IsBoolean()
+  @ApiProperty({
+    description: 'Accept interim (temporário)',
+  })
+  allowInterim: boolean;
+
+  @IsBoolean()
+  @ApiProperty({
+    description: 'Accept part time',
+  })
+  allowPartTime: boolean;
 }
