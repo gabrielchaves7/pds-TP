@@ -19,7 +19,7 @@ class JobsRepository {
       final response = await http.post('/api/job', body: body);
 
       return Job.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
-    } catch (e, stacktrace) {
+    } catch (e) {
       print(e);
     }
   }

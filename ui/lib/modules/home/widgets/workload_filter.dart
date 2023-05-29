@@ -7,6 +7,8 @@ import 'package:premium_todo/modules/home/bloc/home_cubit.dart';
 import 'package:premium_todo/modules/home/bloc/home_state.dart';
 
 class Workload extends StatelessWidget {
+  const Workload({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Wrap(

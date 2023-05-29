@@ -295,7 +295,7 @@ class _ExperienceInput extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Experiência'),
+            const Text('Experiência'),
             DropdownButton<String>(
               value: state.jobForm.experience.value,
               isExpanded: true,
@@ -330,7 +330,7 @@ class _WorkloadInput extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Carga Horária"),
+            const Text('Carga Horária'),
             SizedBox(
               width: 548,
               child: Row(

@@ -12,6 +12,8 @@ enum LocationFilter {
 }
 
 class LocationFilterWidget extends StatelessWidget {
+  const LocationFilterWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeState>(

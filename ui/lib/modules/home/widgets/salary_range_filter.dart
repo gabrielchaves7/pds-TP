@@ -14,6 +14,8 @@ enum SalaryRangeFilter {
 }
 
 class Salary extends StatelessWidget {
+  const Salary({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeState>(

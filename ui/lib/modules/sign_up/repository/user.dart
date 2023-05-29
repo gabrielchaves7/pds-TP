@@ -11,6 +11,8 @@ enum UserRole {
 class NUser {
   const NUser({required this.id, this.username, this.role});
 
+  factory NUser.fromJson(Map<String, dynamic> json) => _$NUserFromJson(json);
+
   final int id;
   final String? username;
   final UserRole? role;
@@ -24,8 +26,6 @@ class NUser {
   bool get isNotEmpty => this != NUser.empty;
 
   bool get isCompany => role == UserRole.COMPANY;
-
-  factory NUser.fromJson(Map<String, dynamic> json) => _$NUserFromJson(json);
 
   /// Connect the generated [_$NUserToJson] function to the `toJson` method.
   Map<String, dynamic> toJson() => _$NUserToJson(this);

@@ -25,7 +25,6 @@ class SignUpRepository {
   static const userCacheKey = '__user_cache_key__';
 
   /// Returns the current cached user.
-  /// Defaults to [User.empty] if there is no cached user.
   NUser get currentUser {
     final json = _cache.readSp(
       key: userCacheKey,

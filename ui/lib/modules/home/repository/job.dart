@@ -22,6 +22,7 @@ class Job {
     required this.allowPartTime,
     required this.allowInterim,
   });
+  factory Job.fromJson(Map<String, dynamic> json) => _$JobFromJson(json);
 
   final String name;
   final String? companyName;
@@ -38,8 +39,6 @@ class Job {
   final bool allowFullTime;
   final bool allowPartTime;
   final bool allowInterim;
-
-  factory Job.fromJson(Map<String, dynamic> json) => _$JobFromJson(json);
 
   /// Connect the generated [_$JobToJson] function to the `toJson` method.
   Map<String, dynamic> toJson() => _$JobToJson(this);

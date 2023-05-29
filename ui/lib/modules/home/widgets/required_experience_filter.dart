@@ -13,6 +13,8 @@ enum RequiredExperienceFilter {
 }
 
 class RequiredExperience extends StatelessWidget {
+  const RequiredExperience({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeState>(

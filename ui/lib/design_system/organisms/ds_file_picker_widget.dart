@@ -41,7 +41,7 @@ class _DsFilePickerState extends State<DsFilePicker> {
               Expanded(
                 child: DottedBorder(
                   strokeWidth: 4,
-                  dashPattern: [12, 8],
+                  dashPattern: const [12, 8],
                   color: DsColors.brandColorPrimary,
                   child: Center(
                     child: Column(

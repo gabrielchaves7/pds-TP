@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:premium_todo/assets.dart';
 import 'package:premium_todo/design_system/design_system.dart';
 import 'package:premium_todo/design_system/molecules/ds_icon_and_title.dart';
 import 'package:premium_todo/design_system/organisms/ds_file_picker_widget.dart';
@@ -84,7 +83,8 @@ class DsJobCard extends StatelessWidget {
                         DsIconAndTitle(
                           icon: const Icon(Icons.calendar_month),
                           title: job.date != null
-                              ? '${DateTime.now().difference(job.date!).inHours}h atrás'
+                              ? '''
+${DateTime.now().difference(job.date!).inHours}h atrás'''
                               : 'Data indisponível',
                         ),
                       ],

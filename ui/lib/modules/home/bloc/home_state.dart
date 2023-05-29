@@ -6,14 +6,6 @@ import 'package:premium_todo/modules/home/widgets/required_experience_filter.dar
 import 'package:premium_todo/modules/home/widgets/salary_range_filter.dart';
 
 class FilterQuery {
-  final RequiredExperienceFilter requiredExperienceFilter;
-  final SalaryRangeFilter salaryRangeFilter;
-  final bool fullTimeFilter;
-  final bool interimFilter;
-  final bool partTimeFilter;
-  final DatePostedFilter datePostedFilter;
-  final LocationFilter locationFilter;
-
   FilterQuery({
     required this.requiredExperienceFilter,
     required this.salaryRangeFilter,
@@ -23,6 +15,13 @@ class FilterQuery {
     required this.datePostedFilter,
     required this.locationFilter,
   });
+  final RequiredExperienceFilter requiredExperienceFilter;
+  final SalaryRangeFilter salaryRangeFilter;
+  final bool fullTimeFilter;
+  final bool interimFilter;
+  final bool partTimeFilter;
+  final DatePostedFilter datePostedFilter;
+  final LocationFilter locationFilter;
 }
 
 class HomeState extends Equatable {

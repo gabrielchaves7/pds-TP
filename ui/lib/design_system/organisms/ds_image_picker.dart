@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -5,11 +7,12 @@ import 'package:premium_todo/assets.dart';
 import 'package:premium_todo/design_system/design_system.dart';
 
 class DsImagePicker extends StatefulWidget {
-  DsImagePicker(
-      {super.key,
-      this.filePickerResult,
-      required this.onFilePick,
-      required this.onDeleteSelectedFile});
+  DsImagePicker({
+    super.key,
+    this.filePickerResult,
+    required this.onFilePick,
+    required this.onDeleteSelectedFile,
+  });
   final FilePickerResult? filePickerResult;
   void Function(FilePickerResult? file) onFilePick;
   void Function() onDeleteSelectedFile;
@@ -64,11 +67,11 @@ class _DsImagePickerState extends State<DsImagePicker> {
           : Expanded(
               child: DottedBorder(
                 strokeWidth: 4,
-                dashPattern: [12, 8],
-                color: Color(0xFF8E8E8E),
+                dashPattern: const [12, 8],
+                color: const Color(0xFF8E8E8E),
                 child: Center(
                   child: Padding(
-                    padding: const EdgeInsets.all(32.0),
+                    padding: const EdgeInsets.all(32),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

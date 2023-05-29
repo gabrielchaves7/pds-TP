@@ -14,6 +14,8 @@ enum DatePostedFilter {
 }
 
 class DatePosted extends StatelessWidget {
+  const DatePosted({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeState>(

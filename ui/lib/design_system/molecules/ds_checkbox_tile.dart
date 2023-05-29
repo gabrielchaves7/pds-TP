@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:premium_todo/design_system/atoms/ds_checkbox.dart';
 import 'package:premium_todo/design_system/design_system.dart';
 
 /// Widget that loads a checkbox with a text on the right.

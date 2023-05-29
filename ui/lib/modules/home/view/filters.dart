@@ -11,40 +11,40 @@ class Filters extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return const Card(
       elevation: 2,
       child: Padding(
-        padding: const EdgeInsets.all(DsSpacing.xxx),
+        padding: EdgeInsets.all(DsSpacing.xxx),
         child: SizedBox(
           width: 250,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+              Text(
                 'Filtros',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              const SizedBox(
+              SizedBox(
                 height: DsSpacing.xx,
               ),
               LocationFilterWidget(),
-              const SizedBox(
+              SizedBox(
                 height: DsSpacing.xx,
               ),
               Salary(),
-              const SizedBox(
+              SizedBox(
                 height: DsSpacing.xx,
               ),
               DatePosted(),
-              const SizedBox(
+              SizedBox(
                 height: DsSpacing.xx,
               ),
               RequiredExperience(),
-              const SizedBox(
+              SizedBox(
                 height: DsSpacing.xx,
               ),
               Workload(),

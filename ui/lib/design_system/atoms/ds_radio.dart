@@ -26,7 +26,7 @@ class DsRadio<T> extends StatelessWidget {
       child: Row(
         children: [
           Radio<T>(
-            activeColor: Color(0xFF3575E2),
+            activeColor: const Color(0xFF3575E2),
             visualDensity: const VisualDensity(
               horizontal: VisualDensity.minimumDensity,
               vertical: VisualDensity.minimumDensity,

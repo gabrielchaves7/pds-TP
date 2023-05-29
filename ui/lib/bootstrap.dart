@@ -32,7 +32,7 @@ class AppBlocObserver extends BlocObserver {
 }
 
 Future<void> setup() async {
-  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  final prefs = await SharedPreferences.getInstance();
   getIt
     ..registerSingleton<IHttpProvider>(HttpProvider())
     ..registerLazySingleton<SignUpRepository>(SignUpRepository.new)
@@ -53,7 +53,7 @@ Future<void> bootstrap() async {
   await setup();
 
   await runZonedGuarded(
-    () async => runApp(App()),
+    () async => runApp(const App()),
     (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
   );
 }

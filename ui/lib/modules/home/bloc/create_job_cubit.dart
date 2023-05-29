@@ -48,10 +48,11 @@ class CreateJobCubit extends Cubit<CreateJobState> {
     );
   }
 
-  void createJob(
-      {required Uint8List rawPath,
-      required void Function(Job newJob) onJobCreated,
-      required int companyId}) async {
+  Future<void> createJob({
+    required Uint8List rawPath,
+    required void Function(Job newJob) onJobCreated,
+    required int companyId,
+  }) async {
     try {
       emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
 
@@ -83,7 +84,7 @@ class CreateJobCubit extends Cubit<CreateJobState> {
 
   Future<String> createImageDownloadUrl(Uint8List rawPath) async {
     final storageRef = FirebaseStorage.instance.ref();
-    final jobRef = storageRef.child('${Uuid().v4()}.png');
+    final jobRef = storageRef.child('${const Uuid().v4()}.png');
     await jobRef.putData(rawPath);
 
     return jobRef.getDownloadURL();

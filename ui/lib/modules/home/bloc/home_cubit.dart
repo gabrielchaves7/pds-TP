@@ -18,7 +18,7 @@ class HomeCubit extends Cubit<HomeState> {
               datePostedFilter: DatePostedFilter.all,
               locationFilter: LocationFilter.near,
             ),
-            jobs: [],
+            jobs: const [],
           ),
         ) {
     _jobsRepository = jobsRepository ?? getIt<JobsRepository>();

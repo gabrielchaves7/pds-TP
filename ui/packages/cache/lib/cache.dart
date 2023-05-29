@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// {@template cache_client}
@@ -7,9 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 /// {@endtemplate}
 class CacheClient {
   /// {@macro cache_client}
-  CacheClient() : _cache = <String, Object>{};
-
-  final Map<String, Object> _cache;
+  CacheClient();
 
   /// Writes the provide [key], [value] pair to the in-memory cache.
   void writeSP(
