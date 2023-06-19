@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { JobsDataSource } from './datasource/job.datasource';
-import { UsersDataSource } from 'src/users/datasource/user.datasource';
-import { UserRole } from 'src/users/entity/user.entity';
+import { UsersDataSource } from '../users/datasource/user.datasource';
+import { UserRole } from '../users/entity/user.entity';
 
 @Injectable()
 export class JobsService {

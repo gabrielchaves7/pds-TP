@@ -2,7 +2,7 @@ import { Injectable, Dependencies } from '@nestjs/common';
 import { getRepositoryToken, InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Job } from '../entity/job.entity';
-import { User } from 'src/users/entity/user.entity';
+import { User } from '../../users/entity/user.entity';
 
 @Injectable()
 @Dependencies(getRepositoryToken(Job))
