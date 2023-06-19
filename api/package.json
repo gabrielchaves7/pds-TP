@@ -73,7 +73,9 @@
       "^.+\\.(t|j)s$": "ts-jest"
     },
     "collectCoverageFrom": [
-      "**/*.(t|j)s"
+      "**/*.(t|j)s",
+      "!users/datasource/user.datasource.ts",
+      "!job/datasource/job.datasource.ts"
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
