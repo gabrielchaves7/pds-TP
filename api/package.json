@@ -75,13 +75,15 @@
     "collectCoverageFrom": [
       "**/*.(t|j)s",
       "!users/datasource/user.datasource.ts",
+      "!users/users.module.ts",
       "!job/datasource/job.datasource.ts",
       "!job/job.module.ts",
       "!auth/auth.guard.ts",
       "!auth/auth.module.ts",
       "!auth/constants.ts",
       "!app.module.ts",
-      "!http-exception.filter.ts"
+      "!http-exception.filter.ts",
+      "!test.helpers.ts"
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
